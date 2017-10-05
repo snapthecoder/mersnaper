@@ -95,6 +95,8 @@
 #include "XF1.h"
 #include "UTIL1.h"
 #include "KIN1.h"
+
+#include "LED.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -118,6 +120,13 @@ int main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
+  for(;;){
+	  LED1_On();
+	  LED2_On();
+  }
+
+
+
 #if 0
   f();
   *((int*)0) = 5;
