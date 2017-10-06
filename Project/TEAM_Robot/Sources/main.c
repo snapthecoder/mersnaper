@@ -107,6 +107,7 @@
 
 void (*f)(void) = NULL;
 int i;
+int time = 100;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -122,7 +123,13 @@ int main(void)
   /* For example: for(;;) { } */
   for(;;){
 	  LED1_On();
+	  WAIT1_Waitms(time);
 	  LED2_On();
+	  WAIT1_Waitms(time);
+	  LED1_Off();
+	  WAIT1_Waitms(time);
+	  LED2_Off();
+	  WAIT1_Waitms(time);
   }
 
 
