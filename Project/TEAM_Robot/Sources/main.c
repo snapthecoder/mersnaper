@@ -121,14 +121,15 @@ int main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
-  for(;;){
+  /*for(;;){
 	  LED1_On();
 	  LED2_On();
 	  WAIT1_Waitms(time);
 	  LED1_Off();
 	  LED2_Off();
 	  WAIT1_Waitms(time);
-  }
+
+  }*/
 
 
 

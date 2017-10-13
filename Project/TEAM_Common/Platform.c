@@ -233,6 +233,7 @@ void PL_Deinit(void) {
 #if PL_CONFIG_HAS_DEBOUNCE
   KEYDBNC_Deinit();
 #endif
+
 #if PL_CONFIG_HAS_BUZZER
   BUZ_Deinit();
 #endif

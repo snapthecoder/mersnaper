@@ -89,6 +89,7 @@ void APP_EventHandler(EVNT_Handle event) {
       }
       LED1_Off();
     }
+    break;
   case EVNT_LED_HEARTBEAT:
     LED2_Neg();
     break;
@@ -183,6 +184,8 @@ void APP_Start(void) {
   PL_Init();
   APP_AdoptToHardware();
   __asm volatile("cpsie i"); /* enable interrupts */
+
+  EVNT_SetEvent(EVNT_STARTUP);
   for(;;) {
 	  LED1_On();
   }
