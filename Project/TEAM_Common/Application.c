@@ -185,8 +185,7 @@ void APP_Start(void) {
   APP_AdoptToHardware();
   __asm volatile("cpsie i"); /* enable interrupts */
 
-  EVNT_SetEvent(EVNT_STARTUP);
-  for(;;) {
+   for(;;) {
 	  LED1_On();
   }
 }
