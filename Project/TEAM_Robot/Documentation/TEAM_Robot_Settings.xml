@@ -1404,7 +1404,7 @@ push-pull
     </Events>
   </Bean>
   <Bean name="TI1" type="TimerInt">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TI1" />
       <Periodic_interrupt_source v="FTM1_C0V" />
@@ -1413,7 +1413,7 @@ push-pull
         <Interrupt v="INT_FTM1" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="200 ms" />
+      <Interrupt_period v="10 ms" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">
@@ -1427,17 +1427,16 @@ push-pull
       </group>
       <group name="Referenced components">
         <inhrbean type="TimerInt_LDD">
-          <Enabled v="N" />
+          <Enabled v="Y" />
           <Properties>
             <Component_name v="TimerIntLdd1" />
-            <Periodic_interrupt_source v="" />
+            <Periodic_interrupt_source v="FTM1_C0V" />
             <Counter v="FTM1_CNT" />
             <boolgroup name="Interrupt service/event" v="Enabled">
               <Interrupt v="INT_FTM1" />
               <Interrupt_priority v="medium priority" />
-              <Interrupt_preserve_registers v="yes" />
             </boolgroup>
-            <Interrupt_period v="200 ms" />
+            <Interrupt_period v="10 ms" />
             <group name="Initialization">
               <Enabled_in_init__code v="yes" />
               <group name="Event mask">
@@ -1451,9 +1450,9 @@ push-pull
           <Methods>
             <Init v="generate code" />
             <Deinit v="don&amp;apos;t generate code" />
-            <Enable v="don&amp;apos;t generate code" />
-            <Disable v="don&amp;apos;t generate code" />
-            <SetEventMask v="don&amp;apos;t generate code" />
+            <Enable v="generate code" />
+            <Disable v="generate code" />
+            <SetEventMask v="generate code" />
             <GetEventMask v="don&amp;apos;t generate code" />
             <GetEventStatus v="don&amp;apos;t generate code" />
             <SelectPeriod v="don&amp;apos;t generate code" />
@@ -1477,10 +1476,10 @@ push-pull
       </group>
     </Properties>
     <Methods>
-      <Enable v="don&amp;apos;t generate code" />
-      <Disable v="don&amp;apos;t generate code" />
-      <EnableEvent v="don&amp;apos;t generate code" />
-      <DisableEvent v="don&amp;apos;t generate code" />
+      <Enable v="generate code" />
+      <Disable v="generate code" />
+      <EnableEvent v="generate code" />
+      <DisableEvent v="generate code" />
       <SetPeriodMode v="don&amp;apos;t generate code" />
       <SetPeriodTicks16 v="don&amp;apos;t generate code" />
       <SetPeriodTicks32 v="don&amp;apos;t generate code" />
@@ -1503,14 +1502,14 @@ push-pull
     </Events>
   </Bean>
   <Bean name="TU1" type="TimerUnit_LDD">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TU1" />
       <Module_name v="FTM1" />
       <Counter v="FTM1_CNT" />
       <Counter_direction v="Up" />
       <Counter_width v="16 bits" />
-      <Value_type v="Optimal" />
+      <Value_type v="uint16_t" />
       <enumgroup name="Input clock source" v="Internal">
         <Counter_frequency v="Auto select" />
       </enumgroup>
@@ -1522,26 +1521,29 @@ push-pull
         <group name="Channel 0">
           <enumgroup name="Mode" v="Compare">
             <Compare v="FTM1_C0V" />
-            <Offset v="200 ms" />
+            <Offset v="10 ms" />
             <enumgroup name="Output on compare" v="Disconnect">
               <EmptySection_DummyValue />
             </enumgroup>
-            <boolgroup name="Interrupt" v="Disabled" />
+            <boolgroup name="Interrupt" v="Enabled">
+              <Interrupt v="INT_FTM1" />
+              <Interrupt_priority v="medium priority" />
+            </boolgroup>
           </enumgroup>
         </group>
       </list>
       <group name="Initialization">
         <Enabled_in_init__code v="yes" />
         <group name="Event mask">
-          <OnCounterRestart v="Enabled" />
+          <OnCounterRestart v="Disabled" />
           <OnChannel0 v="Enabled" />
-          <OnChannel1 v="Enabled" />
-          <OnChannel2 v="Enabled" />
-          <OnChannel3 v="Enabled" />
-          <OnChannel4 v="Enabled" />
-          <OnChannel5 v="Enabled" />
-          <OnChannel6 v="Enabled" />
-          <OnChannel7 v="Enabled" />
+          <OnChannel1 v="Disabled" />
+          <OnChannel2 v="Disabled" />
+          <OnChannel3 v="Disabled" />
+          <OnChannel4 v="Disabled" />
+          <OnChannel5 v="Disabled" />
+          <OnChannel6 v="Disabled" />
+          <OnChannel7 v="Disabled" />
         </group>
       </group>
     </Properties>
@@ -1550,8 +1552,8 @@ push-pull
       <Deinit v="don&amp;apos;t generate code" />
       <Enable v="don&amp;apos;t generate code" />
       <Disable v="don&amp;apos;t generate code" />
-      <SetEventMask v="don&amp;apos;t generate code" />
-      <GetEventMask v="don&amp;apos;t generate code" />
+      <SetEventMask v="generate code" />
+      <GetEventMask v="generate code" />
       <GetEventStatus v="don&amp;apos;t generate code" />
       <SelectInputFrequency v="don&amp;apos;t generate code" />
       <GetInputFrequencyReal v="don&amp;apos;t generate code" />
@@ -1559,9 +1561,9 @@ push-pull
       <SetPeriodTicks v="don&amp;apos;t generate code" />
       <GetPeriodTicks v="don&amp;apos;t generate code" />
       <ResetCounter v="don&amp;apos;t generate code" />
-      <GetCounterValue v="don&amp;apos;t generate code" />
-      <SetOffsetTicks v="don&amp;apos;t generate code" />
-      <GetOffsetTicks v="don&amp;apos;t generate code" />
+      <GetCounterValue v="generate code" />
+      <SetOffsetTicks v="generate code" />
+      <GetOffsetTicks v="generate code" />
       <GetCaptureValue v="don&amp;apos;t generate code" />
       <SelectOutputAction v="don&amp;apos;t generate code" />
       <SelectCaptureEdge v="don&amp;apos;t generate code" />
@@ -1572,7 +1574,9 @@ push-pull
     <Events>
       <Event_module_name v="Events" />
       <event name="OnCounterRestart" v="don&amp;apos;t generate code" />
-      <event name="OnChannel0" v="don&amp;apos;t generate code" />
+      <event name="OnChannel0" v="generate code">
+        <Event_procedure_name v="TU1_OnChannel0" />
+      </event>
       <event name="OnChannel1" v="don&amp;apos;t generate code" />
       <event name="OnChannel2" v="don&amp;apos;t generate code" />
       <event name="OnChannel3" v="don&amp;apos;t generate code" />

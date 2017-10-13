@@ -15,7 +15,7 @@ by the component.
 <tr><td colspan="4" class="ttitle1">TU_QuadInt Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x4004803C</td><td>SIM_SCGC6</td>
-<td class="regNotResetVal">0x41800001</td>
+<td class="regNotResetVal">0x43800001</td>
  <td>SIM_SCGC6 register, peripheral TU_QuadInt.</td></tr>
 <tr><td>0x40037000</td><td>PIT_MCR</td>
 <td class="regNotResetVal">0x00000000</td>
@@ -33,7 +33,7 @@ by the component.
 <td class="regNotResetVal">0x000000F0</td>
  <td>NVICIP49 register, peripheral TU_QuadInt.</td></tr>
 <tr><td>0xE000E104</td><td>NVICISER1</td>
-<td class="regNotResetVal">0x00020000</td>
+<td class="regNotResetVal">0x00020800</td>
  <td>NVICISER1 register, peripheral TU_QuadInt.</td></tr>
 </table>
 Color Denotes Reset Value
@@ -89,14 +89,14 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4004803C</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x41800001</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x43800001</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x40000001</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>31</td><td>DAC0</td><td>0x00</td><td>DAC0 Clock Gate Control</td>
 <tr><td>29</td><td>RTC</td><td>0x00</td><td>RTC Access Control</td>
 <tr><td>27</td><td>ADC0</td><td>0x00</td><td>ADC0 Clock Gate Control</td>
 <tr><td>26</td><td>FTM2</td><td>0x00</td><td>FTM2 Clock Gate Control</td>
-<tr><td>25</td><td>FTM1</td><td>0x00</td><td>FTM1 Clock Gate Control</td>
+<tr><td>25</td><td>FTM1</td><td>0x01</td><td>FTM1 Clock Gate Control</td>
 <tr><td>24</td><td>FTM0</td><td>0x01</td><td>FTM0 Clock Gate Control</td>
 <tr><td>23</td><td>PIT</td><td>0x01</td><td>PIT Clock Gate Control</td>
 <tr><td>22</td><td>PDB</td><td>0x00</td><td>PDB Clock Gate Control</td>
@@ -371,7 +371,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E104</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00020000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00020800</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>SETENA</td><td>0x00</td><td>Interrupt set enable bits</td>

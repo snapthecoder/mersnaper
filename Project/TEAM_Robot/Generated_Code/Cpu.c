@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:03, # CodeGen: 0
+**     Date/Time   : 2017-10-13, 16:30, # CodeGen: 11
 **     Abstract    :
 **
 **     Settings    :
@@ -324,6 +324,9 @@
 #include "BitIoLdd2.h"
 #include "SW1.h"
 #include "BitIoLdd3.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU1.h"
 #include "BUZ1.h"
 #include "BitIoLdd4.h"
 #include "RTT1.h"
@@ -1242,21 +1245,6 @@ PE_ISR(Cpu_ivINT_FTM0)
 
 /*
 ** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_FTM1 (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_FTM1)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_FTM2 (component MK22FN1M0LK12)
 **
 **     Description :
@@ -2016,6 +2004,9 @@ void PE_low_level_init(void)
   (void)BitIoLdd2_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd3" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd3_Init(NULL);
+  /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)TimerIntLdd1_Init(NULL);
+  /* ### TimerInt "TI1" init code ... */
   /* ### BitIO_LDD "BitIoLdd4" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd4_Init(NULL);
   /* ### SeggerRTT "RTT1" init code ... */

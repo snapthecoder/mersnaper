@@ -261,7 +261,7 @@ PE_DEBUGHALT();
     <Properties>
       <Component_name v="HF1" />
       <SDK v="MCUC1" />
-      <Disable_write_buffer v="no" />
+      <Disable_write_buffer v="yes" />
     </Properties>
     <Methods>
       <HardFaultHandler v="generate code" />
@@ -1413,7 +1413,7 @@ push-pull
         <Interrupt v="INT_FTM1" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="200 ms" />
+      <Interrupt_period v="10 ms" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">
@@ -1477,10 +1477,10 @@ push-pull
       </group>
     </Properties>
     <Methods>
-      <Enable v="don&amp;apos;t generate code" />
-      <Disable v="don&amp;apos;t generate code" />
-      <EnableEvent v="don&amp;apos;t generate code" />
-      <DisableEvent v="don&amp;apos;t generate code" />
+      <Enable v="generate code" />
+      <Disable v="generate code" />
+      <EnableEvent v="generate code" />
+      <DisableEvent v="generate code" />
       <SetPeriodMode v="don&amp;apos;t generate code" />
       <SetPeriodTicks16 v="don&amp;apos;t generate code" />
       <SetPeriodTicks32 v="don&amp;apos;t generate code" />

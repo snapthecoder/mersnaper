@@ -20,12 +20,19 @@
 #endif
 #include "TMOUT1.h"
 #include "TmDt1.h"
+#include "LED.h"
 
 
 void TMR_OnInterrupt(void) {
   static unsigned int cntr = 0;
   /* this one gets called from an interrupt!!!! */
   /*! \todo Add code for a blinking LED here */
+  cntr++;
+  if (cntr == 1000/TMR_TICK_MS){
+	  LED1_Neg();
+	  WAIT1_Waitms(50);
+  }
+  LED1_Off();
 }
 
 void TMR_Init(void) {
