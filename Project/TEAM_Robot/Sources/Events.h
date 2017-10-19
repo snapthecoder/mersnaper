@@ -38,12 +38,16 @@
 #include "LEDPin2.h"
 #include "BitIoLdd2.h"
 #include "SW1.h"
-#include "BitIoLdd3.h"
+#include "ExtIntLdd1.h"
+#include "TU_MCP4728.h"
+#include "MCP4728_LDAC.h"
+#include "BitIoLdd20.h"
+#include "MCP4728_RDY.h"
+#include "BitIoLdd21.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
 #include "CLS1.h"
-#include "RTT1.h"
 #include "LED_IR.h"
 #include "LEDpin3.h"
 #include "BitIoLdd5.h"
@@ -95,6 +99,7 @@
 #include "IntFlashLdd1.h"
 #include "BUZ1.h"
 #include "BitIoLdd4.h"
+#include "RTT1.h"
 #include "WAIT1.h"
 #include "CS1.h"
 #include "HF1.h"
@@ -154,6 +159,20 @@ void QuadInt_OnInterrupt(void);
 ** ===================================================================
 */
 void TI1_OnInterrupt(void);
+
+void SW1_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  SW1_OnInterrupt (module Events)
+**
+**     Component   :  SW1 [ExtInt]
+**     Description :
+**         This event is called when an active signal edge/level has
+**         occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* END Events */
 

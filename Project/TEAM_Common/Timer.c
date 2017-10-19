@@ -29,10 +29,13 @@ void TMR_OnInterrupt(void) {
   /*! \todo Add code for a blinking LED here */
   cntr++;
   if (cntr == 1000/TMR_TICK_MS){
-	  LED1_Neg();
-	  WAIT1_Waitms(50);
+	 // LED1_Neg();
+	 // WAIT1_Waitms(50);
+	 EVNT_SetEvent(EVNT_LED_HEARTBEAT);
+	 cntr = 0; /* reset */
+
   }
-  LED1_Off();
+
 }
 
 void TMR_Init(void) {

@@ -92,10 +92,13 @@ void APP_EventHandler(EVNT_Handle event) {
     break;
   case EVNT_LED_HEARTBEAT:
     LED2_Neg();
+
     break;
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
     BtnMsg(1, "pressed");
+    LED1_Neg();
+    WAIT1_Waitms(50);
      break;
 #endif
     default:
@@ -183,11 +186,16 @@ static void APP_AdoptToHardware(void) {
 void APP_Start(void) {
   PL_Init();
   APP_AdoptToHardware();
+  __asm volatile("cpsid i"); /* disable interrupts */
   __asm volatile("cpsie i"); /* enable interrupts */
   EVNT_SetEvent(EVNT_STARTUP);
+   CLS1_SendStr("Hello World", CLS1_GetStdio()->stdOut);
+
    for(;;) {
-	  EVNT_SetEvent(EVNT_LED_HEARTBEAT);
-	  LED1_On();
+	   EVNT_HandleEvent(APP_EventHandler, TRUE);
+	   CLS1_SendStr("Hello Woorld\n", CLS1_GetStdio()->stdOut);
+
+
   }
 }
 

@@ -3,30 +3,31 @@
 **     Filename    : SW1.c
 **     Project     : TEAM_Robot
 **     Processor   : MK22FX512VLK12
-**     Component   : BitIO
-**     Version     : Component 02.086, Driver 01.00, CPU db: 3.00.000
+**     Component   : ExtInt
+**     Version     : Component 02.105, Driver 01.00, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:03, # CodeGen: 0
+**     Date/Time   : 2017-10-19, 14:36, # CodeGen: 15
 **     Abstract    :
-**         This component "BitIO" implements an one-bit input/output.
-**         It uses one bit/pin of a port.
-**         Note: This component is set to work in Input direction only.
-**         Methods of this component are mostly implemented as a macros
-**         (if supported by target language and compiler).
+**         This component "ExtInt" implements an external 
+**         interrupt, its control methods and interrupt/event 
+**         handling procedure.
+**         The component uses one pin which generates interrupt on 
+**         selected edge.
 **     Settings    :
 **          Component name                                 : SW1
-**          Pin for I/O                                    : PTA14/SPI0_PCS0/UART0_TX/I2C2_SCL/I2S0_RX_BCLK/I2S0_TXD1
-**          Pin signal                                     : BUTTON
-**          BitIO_LDD                                      : BitIO_LDD
-**          Direction                                      : Input
+**          Pin                                            : PTA14/SPI0_PCS0/UART0_TX/I2C2_SCL/I2S0_RX_BCLK/I2S0_TXD1
+**          Pin signal                                     : SW1
+**          ExtInt_LDD                                     : ExtInt_LDD
+**          Generate interrupt on                          : falling edge
+**          Interrupt                                      : INT_PORTA
+**          Interrupt priority                             : medium priority
 **          Initialization                                 : 
-**            Init. direction                              : Input
-**            Init. value                                  : 0
-**          Safe mode                                      : yes
-**          Optimization for                               : speed
+**            Enabled in init. code                        : yes
 **     Contents    :
-**         GetVal - bool SW1_GetVal(void);
+**         Enable  - void SW1_Enable(void);
+**         Disable - void SW1_Disable(void);
+**         GetVal  - bool SW1_GetVal(void);
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -63,11 +64,11 @@
 ** @file SW1.c
 ** @version 01.00
 ** @brief
-**         This component "BitIO" implements an one-bit input/output.
-**         It uses one bit/pin of a port.
-**         Note: This component is set to work in Input direction only.
-**         Methods of this component are mostly implemented as a macros
-**         (if supported by target language and compiler).
+**         This component "ExtInt" implements an external 
+**         interrupt, its control methods and interrupt/event 
+**         handling procedure.
+**         The component uses one pin which generates interrupt on 
+**         selected edge.
 */         
 /*!
 **  @addtogroup SW1_module SW1 module documentation
@@ -76,6 +77,7 @@
 
 /* MODULE SW1. */
 
+#include "Events.h"
 #include "SW1.h"
 
 #ifdef __cplusplus
@@ -84,19 +86,48 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Method      :  SW1_GetVal (component BitIO)
+**     Method      :  SW1_Enable (component ExtInt)
 **     Description :
-**         This method returns an input value.
-**           a) direction = Input  : reads the input value from the
-**                                   pin and returns it
-**           b) direction = Output : returns the last written value
-**         Note: This component is set to work in Input direction only.
+**         Enable the component - the external events are accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+/*
+void SW1_Enable(void)
+
+**  This method is implemented as a macro. See SW1.h file.  **
+*/
+
+/*
+** ===================================================================
+**     Method      :  SW1_Disable (component ExtInt)
+**     Description :
+**         Disable the component - the external events are not accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+/*
+void SW1_Disable(void)
+
+**  This method is implemented as a macro. See SW1.h file.  **
+*/
+
+/*
+** ===================================================================
+**     Method      :  SW1_GetVal (component ExtInt)
+**     Description :
+**         Returns the actual value of the input pin of the component.
 **     Parameters  : None
 **     Returns     :
-**         ---             - Input value. Possible values:
-**                           FALSE - logical "0" (Low level)
-**                           TRUE - logical "1" (High level)
-
+**         ---             - Returned input value. Possible values:
+**                           <false> - logical "0" (Low level) <true> -
+**                           logical "1" (High level)
 ** ===================================================================
 */
 /*
@@ -104,6 +135,23 @@ bool SW1_GetVal(void)
 
 **  This method is implemented as a macro. See SW1.h file.  **
 */
+
+/*
+** ===================================================================
+**     Method      :  SW1_OnInterrupt (component ExtInt)
+**
+**     Description :
+**         This event is called when an active signal edge/level has 
+**         occurred. The event services the event of the inherited 
+**         component and eventually invokes other events.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+void ExtIntLdd1_OnInterrupt(LDD_TUserData *UserDataPtr)
+{
+  (void)UserDataPtr;                   /* Parameter is not used, suppress unused argument warning */
+  SW1_OnInterrupt();                   /* Invoke OnInterrupt event */
+}
 
 /* END SW1. */
 

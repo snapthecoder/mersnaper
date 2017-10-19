@@ -29,7 +29,10 @@
 \page page_components Components 
 - \subpage BitIoLdd1
 - \subpage BitIoLdd2
-- \subpage BitIoLdd3
+- \subpage ExtIntLdd1
+- \subpage TU_MCP4728
+- \subpage BitIoLdd20
+- \subpage BitIoLdd21
 - \subpage TU1
 - \subpage TimerIntLdd1
 - \subpage BitIoLdd4
