@@ -32,6 +32,7 @@ void TMR_OnInterrupt(void) {
 	 // LED1_Neg();
 	 // WAIT1_Waitms(50);
 	 EVNT_SetEvent(EVNT_LED_HEARTBEAT);
+
 	 cntr = 0; /* reset */
 
   }

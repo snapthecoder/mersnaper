@@ -189,11 +189,13 @@ void APP_Start(void) {
   __asm volatile("cpsid i"); /* disable interrupts */
   __asm volatile("cpsie i"); /* enable interrupts */
   EVNT_SetEvent(EVNT_STARTUP);
-   CLS1_SendStr("Hello World", CLS1_GetStdio()->stdOut);
-
+   CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
+   BUZ_PlayTune(1);
+   BUZ_PlayTune(2);
+   BUZ_PlayTune(3);
    for(;;) {
 	   EVNT_HandleEvent(APP_EventHandler, TRUE);
-	   CLS1_SendStr("Hello Woorld\n", CLS1_GetStdio()->stdOut);
+
 
 
   }

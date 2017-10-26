@@ -29,6 +29,8 @@
 #include "Cpu.h"
 #include "Events.h"
 #include "Keys.h"
+#include "Timer.h"
+#include "Trigger.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -93,6 +95,7 @@ void TI1_OnInterrupt(void)
 {
   /* Write your code here ... */
 	TMR_OnInterrupt();
+	TRG_AddTick();
 }
 
 /*
@@ -111,7 +114,7 @@ void SW1_OnInterrupt(void)
 {
   /* Write your code here ... */
 	KEY_OnInterrupt(KEY_BTN1);
-
+	CLS1_SendStr("Key : 1\n", CLS1_GetStdio()->stdOut);
 }
 
 /* END Events */
