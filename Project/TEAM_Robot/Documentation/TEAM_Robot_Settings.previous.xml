@@ -152,9 +152,7 @@ PE_DEBUGHALT();
       <boolgroup name="History" v="no" />
       <Mutex v="no" />
       <SDK v="MCUC1" />
-      <boolgroup name="Default Serial" v="Enabled">
-        <Console_Interface v="RTT1" />
-      </boolgroup>
+      <boolgroup name="Default Serial" v="Disabled" />
       <Utility v="UTIL1" />
       <XFormat v="XF1" />
       <Critical_Section v="CS1" />

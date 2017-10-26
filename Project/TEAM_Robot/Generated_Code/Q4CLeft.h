@@ -7,7 +7,7 @@
 **     Version     : Component 01.031, Driver 01.00, CPU db: 3.00.000
 **     Repository  : My Components
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:03, # CodeGen: 0
+**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
 **     Abstract    :
 **
 This driver implements a quadrature encoder using two signals (C1 and C2) to generate position information.

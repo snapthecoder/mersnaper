@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:03, # CodeGen: 0
+**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
 **     Abstract    :
 **          This file implements the USB_OTG (USB0) module initialization
 **          according to the Peripheral Initialization settings, and
