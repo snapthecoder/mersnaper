@@ -6,7 +6,7 @@
 **     Version     : Component 01.001, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:06, # CodeGen: 0
+**     Date/Time   : 2017-11-02, 14:35, # CodeGen: 4
 **     Abstract    :
 **
 **     Settings    :
@@ -72,15 +72,15 @@
 #include "ASerialLdd1.h"
 #include "RTT1.h"
 #include "SW1.h"
-#include "BitIoLdd10.h"
+#include "ExtIntLdd1.h"
 #include "SW2.h"
-#include "BitIoLdd11.h"
+#include "ExtIntLdd2.h"
 #include "SW3.h"
-#include "BitIoLdd12.h"
+#include "ExtIntLdd3.h"
 #include "SW4.h"
-#include "BitIoLdd13.h"
+#include "ExtIntLdd4.h"
 #include "SW5.h"
-#include "BitIoLdd14.h"
+#include "ExtIntLdd5.h"
 #include "SW6.h"
 #include "BitIoLdd15.h"
 #include "SW7.h"

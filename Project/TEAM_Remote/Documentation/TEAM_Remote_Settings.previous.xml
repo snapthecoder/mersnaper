@@ -1974,12 +1974,12 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW2" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="SW2" />
       <Pin_for_I_O v="TSI0_CH5/PTA4/LLWU_P3/FTM0_CH1/NMI_b/EZP_CS_b" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd11" />
@@ -2037,19 +2037,25 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW2" type="ExtInt">
-    <Enabled v="Y" />
+    <Enabled v="N" />
     <Properties>
       <Component_name v="SW2" />
       <Pin v="TSI0_CH5/PTA4/LLWU_P3/FTM0_CH1/NMI_b/EZP_CS_b" />
       <inhrbean type="ExtInt_LDD">
-        <Enabled v="Y" />
+        <Enabled v="N" />
         <Template v="ExtInt_LDD" />
         <Properties>
           <Component_name v="ExtIntLdd2" />
           <Pin v="TSI0_CH5/PTA4/LLWU_P3/FTM0_CH1/NMI_b/EZP_CS_b" />
-          <Generate_interrupt_on v="falling edge" />
+          <Generate_interrupt_on sel_value="rising edge">
+            
+rising or falling edge
+
+            <EmptySection_DummyValue />
+          </Generate_interrupt_on>
           <Interrupt v="INT_PORTA" />
           <Interrupt_priority v="medium priority" />
+          <Interrupt_preserve_registers v="yes" />
           <group name="Initialization">
             <Enabled_in_init__code v="yes" />
           </group>
@@ -2095,12 +2101,12 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW3" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="SW3" />
       <Pin_for_I_O v="TSI0_CH3/PTA2/UART0_TX/FTM0_CH7/JTAG_TDO/TRACE_SWO/EZP_DO" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd12" />
@@ -2158,19 +2164,25 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW3" type="ExtInt">
-    <Enabled v="Y" />
+    <Enabled v="N" />
     <Properties>
       <Component_name v="SW3" />
       <Pin v="TSI0_CH3/PTA2/UART0_TX/FTM0_CH7/JTAG_TDO/TRACE_SWO/EZP_DO" />
       <inhrbean type="ExtInt_LDD">
-        <Enabled v="Y" />
+        <Enabled v="N" />
         <Template v="ExtInt_LDD" />
         <Properties>
           <Component_name v="ExtIntLdd3" />
           <Pin v="TSI0_CH3/PTA2/UART0_TX/FTM0_CH7/JTAG_TDO/TRACE_SWO/EZP_DO" />
-          <Generate_interrupt_on v="falling edge" />
+          <Generate_interrupt_on sel_value="rising edge">
+            
+rising or falling edge
+
+            <EmptySection_DummyValue />
+          </Generate_interrupt_on>
           <Interrupt v="INT_PORTA" />
           <Interrupt_priority v="medium priority" />
+          <Interrupt_preserve_registers v="yes" />
           <group name="Initialization">
             <Enabled_in_init__code v="yes" />
           </group>
@@ -2216,12 +2228,12 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW4" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="SW4" />
       <Pin_for_I_O v="ADC0_SE8/TSI0_CH0/PTB0/LLWU_P5/I2C0_SCL/FTM1_CH0/FTM1_QD_PHA" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd13" />
@@ -2279,19 +2291,25 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW4" type="ExtInt">
-    <Enabled v="Y" />
+    <Enabled v="N" />
     <Properties>
       <Component_name v="SW4" />
       <Pin v="ADC0_SE8/TSI0_CH0/PTB0/LLWU_P5/I2C0_SCL/FTM1_CH0/FTM1_QD_PHA" />
       <inhrbean type="ExtInt_LDD">
-        <Enabled v="Y" />
+        <Enabled v="N" />
         <Template v="ExtInt_LDD" />
         <Properties>
           <Component_name v="ExtIntLdd4" />
           <Pin v="ADC0_SE8/TSI0_CH0/PTB0/LLWU_P5/I2C0_SCL/FTM1_CH0/FTM1_QD_PHA" />
-          <Generate_interrupt_on v="falling edge" />
+          <Generate_interrupt_on sel_value="rising edge">
+            
+rising or falling edge
+
+            <EmptySection_DummyValue />
+          </Generate_interrupt_on>
           <Interrupt v="INT_PORTB" />
           <Interrupt_priority v="medium priority" />
+          <Interrupt_preserve_registers v="yes" />
           <group name="Initialization">
             <Enabled_in_init__code v="yes" />
           </group>
@@ -2337,12 +2355,12 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW5" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="SW5" />
       <Pin_for_I_O v="ADC0_SE12/TSI0_CH7/PTB2/I2C0_SCL/UART0_RTS_b/FTM0_FLT3" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd14" />
@@ -2400,19 +2418,25 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="SW5" type="ExtInt">
-    <Enabled v="Y" />
+    <Enabled v="N" />
     <Properties>
       <Component_name v="SW5" />
       <Pin v="ADC0_SE12/TSI0_CH7/PTB2/I2C0_SCL/UART0_RTS_b/FTM0_FLT3" />
       <inhrbean type="ExtInt_LDD">
-        <Enabled v="Y" />
+        <Enabled v="N" />
         <Template v="ExtInt_LDD" />
         <Properties>
           <Component_name v="ExtIntLdd5" />
           <Pin v="ADC0_SE12/TSI0_CH7/PTB2/I2C0_SCL/UART0_RTS_b/FTM0_FLT3" />
-          <Generate_interrupt_on v="falling edge" />
+          <Generate_interrupt_on sel_value="rising edge">
+            
+rising or falling edge
+
+            <EmptySection_DummyValue />
+          </Generate_interrupt_on>
           <Interrupt v="INT_PORTB" />
           <Interrupt_priority v="medium priority" />
+          <Interrupt_preserve_registers v="yes" />
           <group name="Initialization">
             <Enabled_in_init__code v="yes" />
           </group>

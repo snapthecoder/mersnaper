@@ -120,30 +120,40 @@ Module "RTT1"      (component SeggerRTT)
    - RTT1_Deinit -Driver deinitialization
    - RTT1_Init -Initializes the RTT Control Block.
 
-Module "SW1"       (component BitIO)
-   - SW1_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
-                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
-                limitations). This method cannot be disabled if direction is [input].
+Module "SW1"       (component ExtInt)
+   - SW1_Enable -Enable the component - the external events are accepted. This method is available only if HW module allows 
+                enable/disable of the interrupt.
+   - SW1_Disable -Disable the component - the external events are not accepted. This method is available only if HW module 
+                allows enable/disable of the interrupt.
+   - SW1_GetVal -Returns the actual value of the input pin of the component.
 
-Module "SW2"       (component BitIO)
-   - SW2_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
-                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
-                limitations). This method cannot be disabled if direction is [input].
+Module "SW2"       (component ExtInt)
+   - SW2_Enable -Enable the component - the external events are accepted. This method is available only if HW module allows 
+                enable/disable of the interrupt.
+   - SW2_Disable -Disable the component - the external events are not accepted. This method is available only if HW module 
+                allows enable/disable of the interrupt.
+   - SW2_GetVal -Returns the actual value of the input pin of the component.
 
-Module "SW3"       (component BitIO)
-   - SW3_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
-                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
-                limitations). This method cannot be disabled if direction is [input].
+Module "SW3"       (component ExtInt)
+   - SW3_Enable -Enable the component - the external events are accepted. This method is available only if HW module allows 
+                enable/disable of the interrupt.
+   - SW3_Disable -Disable the component - the external events are not accepted. This method is available only if HW module 
+                allows enable/disable of the interrupt.
+   - SW3_GetVal -Returns the actual value of the input pin of the component.
 
-Module "SW4"       (component BitIO)
-   - SW4_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
-                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
-                limitations). This method cannot be disabled if direction is [input].
+Module "SW4"       (component ExtInt)
+   - SW4_Enable -Enable the component - the external events are accepted. This method is available only if HW module allows 
+                enable/disable of the interrupt.
+   - SW4_Disable -Disable the component - the external events are not accepted. This method is available only if HW module 
+                allows enable/disable of the interrupt.
+   - SW4_GetVal -Returns the actual value of the input pin of the component.
 
-Module "SW5"       (component BitIO)
-   - SW5_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
-                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
-                limitations). This method cannot be disabled if direction is [input].
+Module "SW5"       (component ExtInt)
+   - SW5_Enable -Enable the component - the external events are accepted. This method is available only if HW module allows 
+                enable/disable of the interrupt.
+   - SW5_Disable -Disable the component - the external events are not accepted. This method is available only if HW module 
+                allows enable/disable of the interrupt.
+   - SW5_GetVal -Returns the actual value of the input pin of the component.
 
 Module "SW6"       (component BitIO)
    - SW6_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 

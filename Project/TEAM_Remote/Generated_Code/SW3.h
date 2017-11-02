@@ -3,30 +3,31 @@
 **     Filename    : SW3.h
 **     Project     : TEAM_Remote
 **     Processor   : MK20DX128VFT5
-**     Component   : BitIO
-**     Version     : Component 02.086, Driver 01.00, CPU db: 3.00.000
+**     Component   : ExtInt
+**     Version     : Component 02.105, Driver 01.00, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:06, # CodeGen: 0
+**     Date/Time   : 2017-11-02, 14:35, # CodeGen: 4
 **     Abstract    :
-**         This component "BitIO" implements an one-bit input/output.
-**         It uses one bit/pin of a port.
-**         Note: This component is set to work in Input direction only.
-**         Methods of this component are mostly implemented as a macros
-**         (if supported by target language and compiler).
+**         This component "ExtInt" implements an external 
+**         interrupt, its control methods and interrupt/event 
+**         handling procedure.
+**         The component uses one pin which generates interrupt on 
+**         selected edge.
 **     Settings    :
 **          Component name                                 : SW3
-**          Pin for I/O                                    : TSI0_CH3/PTA2/UART0_TX/FTM0_CH7/JTAG_TDO/TRACE_SWO/EZP_DO
-**          Pin signal                                     : Button_Left
-**          BitIO_LDD                                      : BitIO_LDD
-**          Direction                                      : Input
+**          Pin                                            : TSI0_CH3/PTA2/UART0_TX/FTM0_CH7/JTAG_TDO/TRACE_SWO/EZP_DO
+**          Pin signal                                     : Button_Down
+**          ExtInt_LDD                                     : ExtInt_LDD
+**          Generate interrupt on                          : falling edge
+**          Interrupt                                      : INT_PORTA
+**          Interrupt priority                             : medium priority
 **          Initialization                                 : 
-**            Init. direction                              : Input
-**            Init. value                                  : 0
-**          Safe mode                                      : yes
-**          Optimization for                               : speed
+**            Enabled in init. code                        : yes
 **     Contents    :
-**         GetVal - bool SW3_GetVal(void);
+**         Enable  - void SW3_Enable(void);
+**         Disable - void SW3_Disable(void);
+**         GetVal  - bool SW3_GetVal(void);
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -63,11 +64,11 @@
 ** @file SW3.h
 ** @version 01.00
 ** @brief
-**         This component "BitIO" implements an one-bit input/output.
-**         It uses one bit/pin of a port.
-**         Note: This component is set to work in Input direction only.
-**         Methods of this component are mostly implemented as a macros
-**         (if supported by target language and compiler).
+**         This component "ExtInt" implements an external 
+**         interrupt, its control methods and interrupt/event 
+**         handling procedure.
+**         The component uses one pin which generates interrupt on 
+**         selected edge.
 */         
 /*!
 **  @addtogroup SW3_module SW3 module documentation
@@ -85,7 +86,7 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 /* Include inherited beans */
-#include "BitIoLdd12.h"
+#include "ExtIntLdd3.h"
 
 #include "Cpu.h"
 
@@ -98,22 +99,45 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Method      :  SW3_GetVal (component BitIO)
+**     Method      :  SW3_Enable (component ExtInt)
 **     Description :
-**         This method returns an input value.
-**           a) direction = Input  : reads the input value from the
-**                                   pin and returns it
-**           b) direction = Output : returns the last written value
-**         Note: This component is set to work in Input direction only.
+**         Enable the component - the external events are accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
 **     Parameters  : None
-**     Returns     :
-**         ---             - Input value. Possible values:
-**                           FALSE - logical "0" (Low level)
-**                           TRUE - logical "1" (High level)
-
+**     Returns     : Nothing
 ** ===================================================================
 */
-#define SW3_GetVal() (BitIoLdd12_GetVal(BitIoLdd12_DeviceData))
+#define SW3_Enable() (ExtIntLdd3_Enable(ExtIntLdd3_DeviceData))
+
+/*
+** ===================================================================
+**     Method      :  SW3_Disable (component ExtInt)
+**     Description :
+**         Disable the component - the external events are not accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+#define SW3_Disable() (ExtIntLdd3_Disable(ExtIntLdd3_DeviceData))
+
+/*
+** ===================================================================
+**     Method      :  SW3_GetVal (component ExtInt)
+**     Description :
+**         Returns the actual value of the input pin of the component.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Returned input value. Possible values:
+**                           <false> - logical "0" (Low level) <true> -
+**                           logical "1" (High level)
+** ===================================================================
+*/
+#define SW3_GetVal() (ExtIntLdd3_GetVal(ExtIntLdd3_DeviceData))
+
+void ExtIntLdd3_OnInterrupt(LDD_TUserData *UserDataPtr);
 
 /* END SW3. */
 

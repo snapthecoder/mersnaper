@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K20P48M50SF0RM Rev. 1, Oct 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:06, # CodeGen: 0
+**     Date/Time   : 2017-11-02, 14:35, # CodeGen: 4
 **     Abstract    :
 **
 **     Settings    :
@@ -310,15 +310,15 @@
 #include "ASerialLdd1.h"
 #include "RTT1.h"
 #include "SW1.h"
-#include "BitIoLdd10.h"
+#include "ExtIntLdd1.h"
 #include "SW2.h"
-#include "BitIoLdd11.h"
+#include "ExtIntLdd2.h"
 #include "SW3.h"
-#include "BitIoLdd12.h"
+#include "ExtIntLdd3.h"
 #include "SW4.h"
-#include "BitIoLdd13.h"
+#include "ExtIntLdd4.h"
 #include "SW5.h"
-#include "BitIoLdd14.h"
+#include "ExtIntLdd5.h"
 #include "SW6.h"
 #include "BitIoLdd15.h"
 #include "SW7.h"
@@ -366,6 +366,39 @@ volatile uint8_t SR_lock = 0x00U;      /* Lock */
 ** ===================================================================
 */
 void Cpu_SetBASEPRI(uint32_t Level);
+
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivINT_PORTA (component MK20DX128FT5)
+**
+**     Description :
+**         This ISR services the ivINT_PORTA interrupt shared by several 
+**         components.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+PE_ISR(Cpu_ivINT_PORTA)
+{
+  ExtIntLdd1_Interrupt();              /* Call the service routine */
+  ExtIntLdd2_Interrupt();              /* Call the service routine */
+  ExtIntLdd3_Interrupt();              /* Call the service routine */
+}
+
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivINT_PORTB (component MK20DX128FT5)
+**
+**     Description :
+**         This ISR services the ivINT_PORTB interrupt shared by several 
+**         components.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+PE_ISR(Cpu_ivINT_PORTB)
+{
+  ExtIntLdd4_Interrupt();              /* Call the service routine */
+  ExtIntLdd5_Interrupt();              /* Call the service routine */
+}
 
 /*
 ** ===================================================================
@@ -570,6 +603,10 @@ void PE_low_level_init(void)
   NVICIP35 = NVIC_IP_PRI35(0x00);
   /* NVICIP8: PRI8=0 */
   NVICIP8 = NVIC_IP_PRI8(0x00);
+  /* GPIOA_PDDR: PDD&=~0x16 */
+  GPIOA_PDDR &= (uint32_t)~(uint32_t)(GPIO_PDDR_PDD(0x16));
+  /* GPIOB_PDDR: PDD&=~5 */
+  GPIOB_PDDR &= (uint32_t)~(uint32_t)(GPIO_PDDR_PDD(0x05));
   /* PORTA_PCR4: ISF=0,IRQC=0,LK=0,DSE=0,ODE=0,PFE=0,SRE=0,PE=1,PS=1 */
   PORTA_PCR4 = (uint32_t)((PORTA_PCR4 & (uint32_t)~(uint32_t)(
                 PORT_PCR_ISF_MASK |
@@ -644,16 +681,16 @@ void PE_low_level_init(void)
   AS1_Init();
   /* ### SeggerRTT "RTT1" init code ... */
   RTT1_Init();
-  /* ### BitIO_LDD "BitIoLdd10" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd10_Init(NULL);
-  /* ### BitIO_LDD "BitIoLdd11" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd11_Init(NULL);
-  /* ### BitIO_LDD "BitIoLdd12" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd12_Init(NULL);
-  /* ### BitIO_LDD "BitIoLdd13" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd13_Init(NULL);
-  /* ### BitIO_LDD "BitIoLdd14" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd14_Init(NULL);
+  /* ### ExtInt_LDD "ExtIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)ExtIntLdd1_Init(NULL);
+  /* ### ExtInt_LDD "ExtIntLdd2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)ExtIntLdd2_Init(NULL);
+  /* ### ExtInt_LDD "ExtIntLdd3" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)ExtIntLdd3_Init(NULL);
+  /* ### ExtInt_LDD "ExtIntLdd4" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)ExtIntLdd4_Init(NULL);
+  /* ### ExtInt_LDD "ExtIntLdd5" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)ExtIntLdd5_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd15" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd15_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd16" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */

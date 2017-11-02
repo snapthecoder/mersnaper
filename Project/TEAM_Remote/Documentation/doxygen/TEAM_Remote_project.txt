@@ -31,11 +31,11 @@
 - \subpage TU1
 - \subpage TimerIntLdd1
 - \subpage ASerialLdd1
-- \subpage BitIoLdd10
-- \subpage BitIoLdd11
-- \subpage BitIoLdd12
-- \subpage BitIoLdd13
-- \subpage BitIoLdd14
+- \subpage ExtIntLdd1
+- \subpage ExtIntLdd2
+- \subpage ExtIntLdd3
+- \subpage ExtIntLdd4
+- \subpage ExtIntLdd5
 - \subpage BitIoLdd15
 - \subpage BitIoLdd16
 - \subpage PTA

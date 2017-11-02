@@ -114,7 +114,7 @@ void SW1_OnInterrupt(void)
 {
   /* Write your code here ... */
 	KEY_OnInterrupt(KEY_BTN1);
-	}
+}
 
 /* END Events */
 

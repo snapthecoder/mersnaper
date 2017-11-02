@@ -27,7 +27,7 @@
   #include "Buzzer.h"
 #endif
 #if PL_CONFIG_HAS_RTOS
-  #include "FRTOS1.h"
+  //#include "FRTOS1.h"
   #include "RTOS.h"
 #endif
 #if PL_CONFIG_HAS_QUADRATURE
@@ -102,6 +102,24 @@ void APP_EventHandler(EVNT_Handle event) {
     BtnMsg(1, "long pressed");
      break;
   case EVNT_SW1_RELEASED:
+    BtnMsg(1, "released");
+     break;
+  case EVNT_SW2_PRESSED:
+     BtnMsg(1, "pressed");
+      break;
+  case EVNT_SW2_LPRESSED:
+     BtnMsg(1, "long pressed");
+      break;
+  case EVNT_SW2_RELEASED:
+	 BtnMsg(1, "released");
+      break;
+  case EVNT_SW3_PRESSED:
+    BtnMsg(1, "pressed");
+     break;
+  case EVNT_SW3_LPRESSED:
+    BtnMsg(1, "long pressed");
+     break;
+  case EVNT_SW3_RELEASED:
     BtnMsg(1, "released");
      break;
 #endif
@@ -200,10 +218,6 @@ void APP_Start(void) {
 
    for(;;) {
 	   EVNT_HandleEvent(APP_EventHandler, TRUE);
-
-
-
-
   }
 }
 
