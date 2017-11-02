@@ -98,12 +98,14 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
     BtnMsg(1, "pressed");
      break;
+
   case EVNT_SW1_LPRESSED:
     BtnMsg(1, "long pressed");
      break;
   case EVNT_SW1_RELEASED:
     BtnMsg(1, "released");
      break;
+#if PL_CONFIG_NOF_KEYS>=2
   case EVNT_SW2_PRESSED:
      BtnMsg(1, "pressed");
       break;
@@ -113,6 +115,8 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW2_RELEASED:
 	 BtnMsg(1, "released");
       break;
+#endif
+#if PL_CONFIG_NOF_KEYS>=3
   case EVNT_SW3_PRESSED:
     BtnMsg(1, "pressed");
      break;
@@ -122,6 +126,7 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW3_RELEASED:
     BtnMsg(1, "released");
      break;
+#endif
 #endif
     default:
       break;
@@ -215,9 +220,14 @@ void APP_Start(void) {
    //BUZ_PlayTune(0);
    //BUZ_PlayTune(2);
    //BUZ_PlayTune(3);
-
    for(;;) {
-	   EVNT_HandleEvent(APP_EventHandler, TRUE);
+	#if PL_CONFIG_HAS_DEBOUNCE
+	   KEYDBNC_Process();
+	#else
+	   KEY_Scan(); /* scan keys and set events */
+	#endif
+	WAIT1_WaitOSms(50);
+	EVNT_HandleEvent(APP_EventHandler, TRUE);
   }
 }
 

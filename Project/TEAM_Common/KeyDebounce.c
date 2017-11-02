@@ -231,14 +231,12 @@ void KEYDBNC_Process(void) {
 
 	KEY_EnableInterrupts();
 	*/
-	 if ((KEYDBNC_FSMdata.state==DBNC_KEY_IDLE) && (KEYDBNC_GetKeys()!=0)) { /* a key is pressed and we are not debouncing */
-	  #if PL_CONFIG_HAS_KBI
-	    KEY_DisableInterrupts(); /* disable interrupts for all keys */
-	  #endif
-	    DBNC_Process(&KEYDBNC_FSMdata); /* starts the state machine */
-	    /*! \todo Only debounce if you are not debouncing already */
-	 }
-	 KEY_EnableInterrupts();
+	if (KEYDBNC_FSMdata.state==DBNC_KEY_IDLE && KEYDBNC_GetKeys()!=0) { /* a key is pressed and we are not debouncing */
+	#if PL_CONFIG_HAS_KBI
+	   KEY_DisableInterrupts(); /* disable interrupts for all keys */
+	#endif
+	   DBNC_Process(&KEYDBNC_FSMdata); /* starts the state machine */
+	}
 }
 
 void KEYDBNC_Init(void) {
