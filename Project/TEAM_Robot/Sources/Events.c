@@ -114,8 +114,7 @@ void SW1_OnInterrupt(void)
 {
   /* Write your code here ... */
 	KEY_OnInterrupt(KEY_BTN1);
-	CLS1_SendStr("Key : 1\n", CLS1_GetStdio()->stdOut);
-}
+	}
 
 /* END Events */
 

@@ -68,7 +68,7 @@ static void BtnMsg(int btn, const char *msg) {
     UTIL1_strcat(buf, sizeof(buf), "\r\n");
     SHELL_SendString(buf);
   #else
-    CLS1_SendStr("Button pressed: ", CLS1_GetStdio()->stdOut);
+    CLS1_SendStr("Button: ", CLS1_GetStdio()->stdOut);
     CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
     CLS1_SendStr(": ", CLS1_GetStdio()->stdOut);
     CLS1_SendNum32s(btn, CLS1_GetStdio()->stdOut);
@@ -97,8 +97,12 @@ void APP_EventHandler(EVNT_Handle event) {
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
     BtnMsg(1, "pressed");
-    LED1_Neg();
-    WAIT1_Waitms(50);
+     break;
+  case EVNT_SW1_LPRESSED:
+    BtnMsg(1, "long pressed");
+     break;
+  case EVNT_SW1_RELEASED:
+    BtnMsg(1, "released");
      break;
 #endif
     default:
