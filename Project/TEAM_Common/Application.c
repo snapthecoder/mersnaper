@@ -263,17 +263,13 @@ void APP_Start(void) {
   APP_AdoptToHardware();
   __asm volatile("cpsid i"); /* disable interrupts */
   __asm volatile("cpsie i"); /* enable interrupts */
-<<<<<<< HEAD
-
    EVNT_SetEvent(EVNT_STARTUP);
    CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
 
-=======
    EVNT_SetEvent(EVNT_STARTUP);
    CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
   EVNT_SetEvent(EVNT_STARTUP);
   CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
->>>>>>> 01013f2f55128cc306bc7f2e5ad0f390079d29d9
    //BUZ_PlayTune(0);
    //BUZ_PlayTune(2);
    //BUZ_PlayTune(3);
@@ -285,9 +281,9 @@ void APP_Start(void) {
 		#endif
 	   	WAIT1_WaitOSms(50);
 	    EVNT_HandleEvent(APP_EventHandler, TRUE);
-<<<<<<< HEAD
+
   }
-=======
+
 	#if PL_CONFIG_HAS_DEBOUNCE
 	   KEYDBNC_Process();
 	#else
@@ -296,7 +292,7 @@ void APP_Start(void) {
 	WAIT1_WaitOSms(50);
 	EVNT_HandleEvent(APP_EventHandler, TRUE);
 	  }
->>>>>>> 01013f2f55128cc306bc7f2e5ad0f390079d29d9
-}
+
+
 
 

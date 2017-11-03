@@ -6,7 +6,7 @@
 **     Version     : Component 01.001, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-03, 16:06, # CodeGen: 8
+**     Date/Time   : 2017-11-03, 16:12, # CodeGen: 9
 **     Abstract    :
 **
 **     Settings    :
@@ -152,7 +152,7 @@
     (tIsrFunc)&Cpu_Interrupt,          /* 0x1F  0x0000007C   -   ivINT_UART0_LON               unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x20  0x00000080   -   ivINT_UART0_RX_TX             unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x21  0x00000084   -   ivINT_UART0_ERR               unused by PE */
-    (tIsrFunc)&ASerialLdd1_Interrupt,  /* 0x22  0x00000088   15   ivINT_UART1_RX_TX             used by PE */
+    (tIsrFunc)&ASerialLdd1_Interrupt,  /* 0x22  0x00000088   8   ivINT_UART1_RX_TX             used by PE */
     (tIsrFunc)&ASerialLdd1_Interrupt,  /* 0x23  0x0000008C   15   ivINT_UART1_ERR               used by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x24  0x00000090   -   ivINT_UART2_RX_TX             unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x25  0x00000094   -   ivINT_UART2_ERR               unused by PE */
