@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
 **     Abstract    :
 **
 **     Settings    :
@@ -185,7 +185,7 @@ void Cpu_DisableInt(void);
 */
 void PE_low_level_init(void);
 
-/* {Default RTOS Adapter} ISR function prototype */
+/* {FreeRTOS RTOS Adapter} ISR function prototype */
 PE_ISR(Cpu_INT_NMIInterrupt);
 /*
 ** ===================================================================
@@ -274,17 +274,6 @@ PE_ISR(Cpu_ivINT_Reserved10);
 ** ===================================================================
 */
 
-PE_ISR(Cpu_ivINT_SVCall);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_SVCall (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
 PE_ISR(Cpu_ivINT_DebugMonitor);
 /*
 ** ===================================================================
@@ -300,28 +289,6 @@ PE_ISR(Cpu_ivINT_Reserved13);
 /*
 ** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_Reserved13 (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
-PE_ISR(Cpu_ivINT_PendableSrvReq);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_PendableSrvReq (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
-PE_ISR(Cpu_ivINT_SysTick);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_SysTick (component MK22FN1M0LK12)
 **
 **     Description :
 **         This ISR services an unused interrupt/exception vector.
@@ -839,17 +806,6 @@ PE_ISR(Cpu_ivINT_RTC_Seconds);
 /*
 ** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_RTC_Seconds (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
-PE_ISR(Cpu_ivINT_PIT0);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_PIT0 (component MK22FN1M0LK12)
 **
 **     Description :
 **         This ISR services an unused interrupt/exception vector.

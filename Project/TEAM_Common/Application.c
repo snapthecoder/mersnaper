@@ -27,7 +27,7 @@
   #include "Buzzer.h"
 #endif
 #if PL_CONFIG_HAS_RTOS
-  //#include "FRTOS1.h"
+  #include "FRTOS1.h"
   #include "RTOS.h"
 #endif
 #if PL_CONFIG_HAS_QUADRATURE
@@ -191,7 +191,7 @@ static const KIN1_UID RoboIDs[] = {
 };
 #endif
 
-static void APP_AdoptToHardware(void) {
+void APP_AdoptToHardware(void) {
   KIN1_UID id;
   uint8_t res;
 
@@ -253,19 +253,29 @@ static void APP_AdoptToHardware(void) {
   PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 17, PORT_PDD_PULL_ENABLE);
 #endif
 }
+//static void MyAppTask(void *pvParam){
+	//if(FRTOS1_xTaskCreate(MyBlinkyTask, "Blinky", 500/sizeof(), NULL, tskIDLE_PRIORITy+1, NULL)!=pdPass; )
+//}
+
 
 void APP_Start(void) {
   PL_Init();
   APP_AdoptToHardware();
   __asm volatile("cpsid i"); /* disable interrupts */
   __asm volatile("cpsie i"); /* enable interrupts */
+<<<<<<< HEAD
 
    EVNT_SetEvent(EVNT_STARTUP);
    CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
+=======
+  EVNT_SetEvent(EVNT_STARTUP);
+  CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
+>>>>>>> 6f737d31948b962924a92d9db210466a7e181859
    //BUZ_PlayTune(0);
    //BUZ_PlayTune(2);
    //BUZ_PlayTune(3);
    for(;;) {
+<<<<<<< HEAD
 		#if PL_CONFIG_HAS_DEBOUNCE
 	   	   KEYDBNC_Process();
 		#else
@@ -273,6 +283,16 @@ void APP_Start(void) {
 		#endif
 	   	WAIT1_WaitOSms(50);
 	    EVNT_HandleEvent(APP_EventHandler, TRUE);
+=======
+	#if PL_CONFIG_HAS_DEBOUNCE
+	   KEYDBNC_Process();
+	#else
+	   KEY_Scan(); /* scan keys and set events */
+	#endif
+	WAIT1_WaitOSms(50);
+	EVNT_HandleEvent(APP_EventHandler, TRUE);
+	sizeof(StackType_t);
+>>>>>>> 6f737d31948b962924a92d9db210466a7e181859
   }
 }
 

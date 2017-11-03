@@ -7,7 +7,7 @@
 **     Version     : Component 01.106, Driver 01.15, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
 **     Abstract    :
 **          This embedded component implements an access to an on-chip flash memory.
 **          Using this component the flash memory could be written to, erased,
@@ -98,7 +98,7 @@
 
 #include "IFsh1.h"
 #include "IntFlashLdd1.h"
-/* {Default RTOS Adapter} No RTOS includes */
+#include "FreeRTOS.h" /* FreeRTOS interface */
 
 #ifdef __cplusplus
 extern "C" {
@@ -193,7 +193,7 @@ typedef struct {
 } IntFlashLdd1_TDeviceData;
 
 typedef IntFlashLdd1_TDeviceData *IntFlashLdd1_TDeviceDataPtr; /* Pointer to the device data structure. */
-/* {Default RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
+/* {FreeRTOS RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
 static IntFlashLdd1_TDeviceData DeviceDataPrv__DEFAULT_RTOS_ALLOC;
 
 #define AVAILABLE_EVENTS_MASK (LDD_FLASH_ON_OPERATION_COMPLETE | LDD_FLASH_ON_ERROR)
@@ -230,7 +230,7 @@ LDD_TDeviceData* IntFlashLdd1_Init(LDD_TUserData *UserDataPtr)
   IntFlashLdd1_TDeviceDataPtr DeviceDataPrv;
 
   /* Allocate LDD device structure */
-  /* {Default RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
+  /* {FreeRTOS RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->CurrentOperationStatus = LDD_FLASH_IDLE; /* Initialization of the Current operation status item */
   DeviceDataPrv->CurrentOperation = LDD_FLASH_NO_OPERATION; /* Initialization of the Current operation type item */
@@ -668,7 +668,7 @@ void IntFlashLdd1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_FLASH_TErrorStatu
   IntFlashLdd1_TDeviceDataPtr DeviceDataPrv = (IntFlashLdd1_TDeviceDataPtr)DeviceDataPtr; /* Auxiliary variable - pointer to an internal state structure */
 
   /* copy of information from internal status structure to the output error status structure */
-  /* {Default RTOS Adapter} Critical section begin, general PE function is used */
+  /* {FreeRTOS RTOS Adapter} Critical section begin (RTOS function call is defined by FreeRTOS RTOS Adapter property) */
   EnterCritical();
   OperationStatus->CurrentOperation = DeviceDataPrv->CurrentOperation; /* Copy the Current operation type to the output structure */
   OperationStatus->CurrentCommand = DeviceDataPrv->CurrentCommand; /* Copy the Current command type to the output structure */
@@ -676,7 +676,7 @@ void IntFlashLdd1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_FLASH_TErrorStatu
   OperationStatus->CurrentAddress = DeviceDataPrv->CurrentFlashAddress; /* Copy the Current flash address to the output structure */
   OperationStatus->CurrentDataPtr = DeviceDataPrv->CurrentDataPtr; /* Copy the Current input/output data pointer to the output structure */
   OperationStatus->CurrentDataSize = DeviceDataPrv->CurrentDataSize; /* Copy the Current input/output data size to the output structure */
-  /* {Default RTOS Adapter} Critical section end, general PE function is used */
+  /* {FreeRTOS RTOS Adapter} Critical section ends (RTOS function call is defined by FreeRTOS RTOS Adapter property) */
   ExitCritical();
 }
 
@@ -730,10 +730,10 @@ static void SafeRoutineCaller(void)
   SafeRoutinePtr = (LDD_FLASH_TSafeRoutinePtr)((((uint32_t)&SaveRoutineStackSpace) + 0x03U) & ~0x03U);
   /* Copy the safe routine's code to a buffer on the stack */
   *(LDD_FLASH_TSafeRoutine *)(void *)SafeRoutinePtr = *(LDD_FLASH_TSafeRoutine *)(void *)&SafeRoutine;
-  /* {Default RTOS Adapter} Critical section begin, general PE function is used */
+  /* {FreeRTOS RTOS Adapter} Critical section begin (RTOS function call is defined by FreeRTOS RTOS Adapter property) */
   EnterCritical();
   ((LDD_FLASH_TSafeRoutinePtr)((uint32_t)(SafeRoutinePtr) | 1U))(); /* Run the Safe routine */
-  /* {Default RTOS Adapter} Critical section end, general PE function is used */
+  /* {FreeRTOS RTOS Adapter} Critical section ends (RTOS function call is defined by FreeRTOS RTOS Adapter property) */
   ExitCritical();
 }
 

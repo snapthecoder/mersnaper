@@ -33,6 +33,7 @@
 - \subpage TU_MCP4728
 - \subpage BitIoLdd20
 - \subpage BitIoLdd21
+- \subpage RTOSCNTRLDD1
 - \subpage TU1
 - \subpage TimerIntLdd1
 - \subpage BitIoLdd4

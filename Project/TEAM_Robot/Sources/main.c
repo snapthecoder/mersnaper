@@ -41,6 +41,8 @@
 #include "BitIoLdd20.h"
 #include "MCP4728_RDY.h"
 #include "BitIoLdd21.h"
+#include "FRTOS1.h"
+#include "RTOSCNTRLDD1.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
@@ -140,7 +142,13 @@ int main(void)
     __asm("nop");
   }
 #endif
+
+#if PL_CONFIG_HAS_RTOS
+  RTOS_APP_Start();
+#else
   APP_Start();
+#endif
+
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
   #ifdef PEX_RTOS_START

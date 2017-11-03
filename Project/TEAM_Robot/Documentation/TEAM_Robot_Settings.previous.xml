@@ -539,6 +539,18 @@ PE_DEBUGHALT();
         <Properties>
           <Component_name v="BitIoLdd3" />
           <Pin_for_I_O v="PTA14/SPI0_PCS0/UART0_TX/I2C2_SCL/I2S0_RX_BCLK/I2S0_TXD1" />
+          <Pull_resistor sel_value="no pull resistor">
+            
+autoselected pull
+
+            <EmptySection_DummyValue />
+          </Pull_resistor>
+          <Open_drain sel_value="The settings is irrelevant for input direction">
+            
+push-pull
+
+            <EmptySection_DummyValue />
+          </Open_drain>
           <Direction v="Input" />
           <group name="Initialization">
             <Init__direction v="Input" />
@@ -546,6 +558,8 @@ PE_DEBUGHALT();
             <Auto_initialization v="yes" />
           </group>
           <Safe_mode v="yes" />
+          <Optimization_for v="speed" />
+          <Implement_using v="EGPIO" />
         </Properties>
         <Methods>
           <Init v="generate code" />
@@ -1047,7 +1061,7 @@ PE_DEBUGHALT();
     </Events>
   </Bean>
   <Bean name="FRTOS1" type="FreeRTOS">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="FRTOS1" />
       <RTOS_Version v="V9.0.0" />
@@ -1078,7 +1092,7 @@ PE_DEBUGHALT();
         <Use_Tick_Counter v="no" />
         <boolgroup name="LDD" v="Enabled">
           <inhrbean type="TimerUnit_LDD">
-            <Enabled v="N" />
+            <Enabled v="Y" />
             <Template v="RuntimeCntrLDD" />
             <Properties>
               <Component_name v="RTOSCNTRLDD1" />
@@ -1105,14 +1119,14 @@ PE_DEBUGHALT();
                 <Enabled_in_init__code v="yes" />
                 <group name="Event mask">
                   <OnCounterRestart v="Enabled" />
-                  <OnChannel0 v="Enabled" />
-                  <OnChannel1 v="Enabled" />
-                  <OnChannel2 v="Enabled" />
-                  <OnChannel3 v="Enabled" />
-                  <OnChannel4 v="Enabled" />
-                  <OnChannel5 v="Enabled" />
-                  <OnChannel6 v="Enabled" />
-                  <OnChannel7 v="Enabled" />
+                  <OnChannel0 v="Disabled" />
+                  <OnChannel1 v="Disabled" />
+                  <OnChannel2 v="Disabled" />
+                  <OnChannel3 v="Disabled" />
+                  <OnChannel4 v="Disabled" />
+                  <OnChannel5 v="Disabled" />
+                  <OnChannel6 v="Disabled" />
+                  <OnChannel7 v="Disabled" />
                 </group>
               </group>
             </Properties>
@@ -1189,7 +1203,7 @@ PE_DEBUGHALT();
       </group>
       <group name="Ticks">
         <boolgroup name="Tickless Idle Mode" v="Disabled" />
-        <Tick_Rate__Hz_ v="100" />
+        <Tick_Rate__Hz_ v="1000" />
         <Use_16bit_ticks v="no" />
         <boolgroup name="non-LDD Tick" v="Disabled" />
         <boolgroup name="LDD Tick" v="Disabled" />
@@ -1206,7 +1220,7 @@ PE_DEBUGHALT();
       <group name="Memory">
         <boolgroup name="Dynamic Allocation" v="Enabled">
           <Application_allocated_Heap v="no" />
-          <Heap_Size v="1024" />
+          <Heap_Size v="8192" />
           <Linker_Heap_Base_Symbol v="__HeapBase" />
           <Linker_Heap_Limit_Symbol v="__HeapLimit" />
           <Linker_Heap_Size_Symbol v="__heap_size" />
@@ -1384,7 +1398,7 @@ PE_DEBUGHALT();
         <Interrupt v="INT_FTM1" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="10 ms" />
+      <Interrupt_period v="1 ms" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">
@@ -1407,7 +1421,7 @@ PE_DEBUGHALT();
               <Interrupt v="INT_FTM1" />
               <Interrupt_priority v="medium priority" />
             </boolgroup>
-            <Interrupt_period v="10 ms" />
+            <Interrupt_period v="1 ms" />
             <group name="Initialization">
               <Enabled_in_init__code v="yes" />
               <group name="Event mask">
@@ -1492,7 +1506,7 @@ PE_DEBUGHALT();
         <group name="Channel 0">
           <enumgroup name="Mode" v="Compare">
             <Compare v="FTM1_C0V" />
-            <Offset v="10 ms" />
+            <Offset v="1 ms" />
             <enumgroup name="Output on compare" v="Disconnect">
               <EmptySection_DummyValue />
             </enumgroup>
@@ -4990,6 +5004,8 @@ autoselected pull
               <Interrupt_TxD_priority v="medium priority" />
               <Interrupt_Error v="" />
               <Interrupt_Error_priority v="medium priority" />
+              <Interrupt_Idle v="" />
+              <Interrupt_Idle_priority v="medium priority" />
             </boolgroup>
             <group name="Settings">
               <Data_width v="8 bits" />
@@ -5009,8 +5025,9 @@ autoselected pull
               <boolgroup name="Transmitter" v="Enabled">
                 <TxD v="" />
               </boolgroup>
-              <enumgroup name="Flow control" v="None">
-                <EmptySection_DummyValue />
+              <enumgroup name="Flow control" v="Hardware (RTS/CTS)">
+                <boolgroup name="CTS" v="Disabled" />
+                <boolgroup name="RTS" v="Disabled" />
               </enumgroup>
             </group>
             <group name="Initialization">
@@ -5019,8 +5036,8 @@ autoselected pull
                 <OnBlockSent v="Enabled" />
                 <OnBlockReceived v="Enabled" />
                 <OnTxComplete v="Disabled" />
-                <OnError v="Enabled" />
-                <OnBreak v="Enabled" />
+                <OnError v="Disabled" />
+                <OnBreak v="Disabled" />
               </group>
             </group>
           </Properties>
@@ -5033,7 +5050,7 @@ autoselected pull
             <ReceiveBlock v="generate code" />
             <CancelBlockTransmission v="don&amp;apos;t generate code" />
             <CancelBlockReception v="don&amp;apos;t generate code" />
-            <GetError v="generate code" />
+            <GetError v="don&amp;apos;t generate code" />
             <GetSentDataNum v="don&amp;apos;t generate code" />
             <GetReceivedDataNum v="don&amp;apos;t generate code" />
             <GetTxCompleteStatus v="don&amp;apos;t generate code" />
@@ -5077,6 +5094,12 @@ autoselected pull
               <Event_procedure_name v="ASerialLdd1_OnError" />
             </event>
             <event name="OnTxComplete" v="don&amp;apos;t generate code" />
+            <event name="OnIdle" v="generate code">
+              <Event_procedure_name v="ASerialLdd1_OnIdle" />
+            </event>
+            <event name="OnRxActiveEdge" v="generate code">
+              <Event_procedure_name v="ASerialLdd1_OnRxActiveEdge" />
+            </event>
           </Events>
         </inhrbean>
       </group>
