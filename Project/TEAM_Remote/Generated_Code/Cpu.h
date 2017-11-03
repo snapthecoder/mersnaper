@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K20P48M50SF0RM Rev. 1, Oct 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-02, 14:35, # CodeGen: 4
+**     Date/Time   : 2017-11-03, 15:42, # CodeGen: 6
 **     Abstract    :
 **
 **     Settings    :
@@ -147,7 +147,7 @@ extern volatile uint8_t SR_reg;        /* Current FAULTMASK register */
 extern volatile uint8_t SR_lock;
 
 
-/* {Default RTOS Adapter} ISR function prototype */
+/* {FreeRTOS RTOS Adapter} ISR function prototype */
 PE_ISR(Cpu_ivINT_PORTA);
 /*
 ** ===================================================================
@@ -160,7 +160,7 @@ PE_ISR(Cpu_ivINT_PORTA);
 ** ===================================================================
 */
 
-/* {Default RTOS Adapter} ISR function prototype */
+/* {FreeRTOS RTOS Adapter} ISR function prototype */
 PE_ISR(Cpu_ivINT_PORTB);
 /*
 ** ===================================================================
@@ -186,7 +186,7 @@ PE_ISR(Cpu_ivINT_PORTB);
 */
 void PE_low_level_init(void);
 
-/* {Default RTOS Adapter} ISR function prototype */
+/* {FreeRTOS RTOS Adapter} ISR function prototype */
 PE_ISR(Cpu_INT_NMIInterrupt);
 /*
 ** ===================================================================

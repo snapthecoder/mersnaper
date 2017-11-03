@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K20P48M50SF0RM Rev. 1, Oct 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-02, 14:35, # CodeGen: 4
+**     Date/Time   : 2017-11-03, 15:42, # CodeGen: 6
 **     Abstract    :
 **
 **     Settings    :
@@ -298,7 +298,9 @@
 
 /* MODULE Cpu. */
 
-/* {Default RTOS Adapter} No RTOS includes */
+#include "FreeRTOS.h" /* FreeRTOS interface */
+#include "FRTOS1.h"
+#include "RTOSCNTRLDD1.h"
 #include "MCUC1.h"
 #include "LEDPin1.h"
 #include "BitIoLdd17.h"
@@ -667,16 +669,18 @@ void PE_low_level_init(void)
   /* PORTD_DFWR: FILT=0 */
   PORTD_DFWR &= (uint32_t)~(uint32_t)(PORT_DFWR_FILT(0x1F));
   /* ### McuLibConfig "MCUC1" init code ... */
-  /* ### BitIO_LDD "BitIoLdd17" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)BitIoLdd17_Init(NULL);
-  /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)TimerIntLdd1_Init(NULL);
-  /* ### TimerInt "TI1" init code ... */
   WAIT1_Init();
   /* ### CriticalSection "CS1" init code ... */
   /* ### XFormat "XF1" init code ... */
   /* ### Shell "CLS1" init code ... */
   CLS1_Init(); /* initialize shell */
+  /* ### FreeRTOS "FRTOS1" init code ... */
+  /* PEX_RTOS_INIT() should have been called at this time already with the most critical setup */
+  /* ### BitIO_LDD "BitIoLdd17" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd17_Init(NULL);
+  /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)TimerIntLdd1_Init(NULL);
+  /* ### TimerInt "TI1" init code ... */
   /* ### Asynchro serial "AS1" init code ... */
   AS1_Init();
   /* ### SeggerRTT "RTT1" init code ... */
@@ -731,8 +735,6 @@ void PE_low_level_init(void)
 #if TmDt1_INIT_IN_STARTUP
   (void)TmDt1_Init();
 #endif
-  /* Enable interrupts of the given priority level */
-  Cpu_SetBASEPRI(0U);
 }
   /* Flash configuration field */
   __attribute__ ((section (".cfmconfig"))) const uint8_t _cfm[0x10] = {

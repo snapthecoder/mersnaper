@@ -96,8 +96,7 @@ void  RTOS_APP_Start(void){
 	  __asm volatile("cpsie i"); /* enable interrupts */
 	  EVNT_SetEvent(EVNT_STARTUP);
 	  CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
-
-	FRTOS1_vTaskStartScheduler();
+	  FRTOS1_vTaskStartScheduler();
 }
 
 

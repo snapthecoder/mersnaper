@@ -6,7 +6,7 @@
 **     Version     : Component 01.001, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-02, 14:35, # CodeGen: 4
+**     Date/Time   : 2017-11-03, 15:42, # CodeGen: 6
 **     Abstract    :
 **
 **     Settings    :
@@ -61,6 +61,8 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
+#include "FRTOS1.h"
+#include "RTOSCNTRLDD1.h"
 #include "MCUC1.h"
 #include "LEDPin1.h"
 #include "BitIoLdd17.h"

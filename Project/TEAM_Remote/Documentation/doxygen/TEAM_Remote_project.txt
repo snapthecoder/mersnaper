@@ -27,6 +27,7 @@
 <br/>
 
 \page page_components Components 
+- \subpage RTOSCNTRLDD1
 - \subpage BitIoLdd17
 - \subpage TU1
 - \subpage TimerIntLdd1
