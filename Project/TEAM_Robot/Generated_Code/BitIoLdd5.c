@@ -7,7 +7,7 @@
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -81,7 +81,7 @@
 
 /* MODULE BitIoLdd5. */
 
-/* {Default RTOS Adapter} No RTOS includes */
+#include "FreeRTOS.h" /* FreeRTOS interface */
 #include "BitIoLdd5.h"
 
 #ifdef __cplusplus
@@ -94,7 +94,7 @@ typedef struct {
 
 typedef BitIoLdd5_TDeviceData *BitIoLdd5_TDeviceDataPtr ; /* Pointer to the device data structure. */
 
-/* {Default RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
+/* {FreeRTOS RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
 static BitIoLdd5_TDeviceData DeviceDataPrv__DEFAULT_RTOS_ALLOC;
 /*
 ** ===================================================================
@@ -123,7 +123,7 @@ LDD_TDeviceData* BitIoLdd5_Init(LDD_TUserData *UserDataPtr)
   /* Allocate device structure */
   BitIoLdd5_TDeviceDataPtr DeviceDataPrv;
 
-  /* {Default RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
+  /* {FreeRTOS RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   /* Configure pin as output */

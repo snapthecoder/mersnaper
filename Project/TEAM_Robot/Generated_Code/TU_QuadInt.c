@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -99,7 +99,7 @@
 
 #include "TimerIntLdd2.h"
 #include "TU_QuadInt.h"
-/* {Default RTOS Adapter} No RTOS includes */
+#include "FreeRTOS.h" /* FreeRTOS interface */
 #include "IO_Map.h"
 
 #ifdef __cplusplus
@@ -114,10 +114,10 @@ typedef struct {
 
 typedef TU_QuadInt_TDeviceData *TU_QuadInt_TDeviceDataPtr; /* Pointer to the device data structure. */
 
-/* {Default RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
+/* {FreeRTOS RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
 static TU_QuadInt_TDeviceData DeviceDataPrv__DEFAULT_RTOS_ALLOC;
-/* {Default RTOS Adapter} Global variable used for passing a parameter into ISR */
-static TU_QuadInt_TDeviceDataPtr INT_PIT1__DEFAULT_RTOS_ISRPARAM;
+/* {FreeRTOS RTOS Adapter} Global variable used for passing a parameter into ISR */
+static TU_QuadInt_TDeviceDataPtr INT_PIT1__BAREBOARD_RTOS_ISRPARAM;
 
 #define AVAILABLE_EVENTS_MASK (LDD_TEventMask)(LDD_TIMERUNIT_ON_COUNTER_RESTART)
 
@@ -152,7 +152,7 @@ LDD_TDeviceData* TU_QuadInt_Init(LDD_TUserData *UserDataPtr)
 
   if (PE_LDD_DeviceDataList[PE_LDD_COMPONENT_TU_QuadInt_ID] == NULL) {
     /* Allocate device structure */
-    /* {Default RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
+    /* {FreeRTOS RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
     DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
     DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
     DeviceDataPrv->InitCntr = 1U;      /* First initialization */
@@ -165,8 +165,8 @@ LDD_TDeviceData* TU_QuadInt_Init(LDD_TUserData *UserDataPtr)
     return ((LDD_TDeviceData *)DeviceDataPrv); /* Return pointer to the device data structure */
   }
   /* Interrupt vector(s) allocation */
-  /* {Default RTOS Adapter} Set interrupt vector: IVT is static, ISR parameter is passed by the global variable */
-  INT_PIT1__DEFAULT_RTOS_ISRPARAM = DeviceDataPrv;
+  /* {FreeRTOS RTOS Adapter} Set interrupt vector: IVT is static, ISR parameter is passed by the global variable */
+  INT_PIT1__BAREBOARD_RTOS_ISRPARAM = DeviceDataPrv;
   /* SIM_SCGC6: PIT=1 */
   SIM_SCGC6 |= SIM_SCGC6_PIT_MASK;
   /* PIT_MCR: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,MDIS=0,FRZ=0 */
@@ -200,8 +200,8 @@ LDD_TDeviceData* TU_QuadInt_Init(LDD_TUserData *UserDataPtr)
 */
 PE_ISR(TU_QuadInt_Interrupt)
 {
-  /* {Default RTOS Adapter} ISR parameter is passed through the global variable */
-  TU_QuadInt_TDeviceDataPtr DeviceDataPrv = INT_PIT1__DEFAULT_RTOS_ISRPARAM;
+  /* {FreeRTOS RTOS Adapter} ISR parameter is passed through the global variable */
+  TU_QuadInt_TDeviceDataPtr DeviceDataPrv = INT_PIT1__BAREBOARD_RTOS_ISRPARAM;
 
   PIT_PDD_ClearInterruptFlag(PIT_BASE_PTR, PIT_PDD_CHANNEL_1); /* Clear interrupt flag */
   TU_QuadInt_OnCounterRestart(DeviceDataPrv->UserDataPtr); /* Invoke OnCounterRestart event */

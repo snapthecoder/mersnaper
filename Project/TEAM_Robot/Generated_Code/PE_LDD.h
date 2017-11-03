@@ -6,7 +6,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
 **     Abstract    :
 **
 **     Settings    :
@@ -80,6 +80,8 @@
 #include "BitIoLdd20.h"
 #include "MCP4728_RDY.h"
 #include "BitIoLdd21.h"
+#include "FRTOS1.h"
+#include "RTOSCNTRLDD1.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"

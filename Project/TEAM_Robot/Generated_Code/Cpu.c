@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
 **     Abstract    :
 **
 **     Settings    :
@@ -309,7 +309,7 @@
 
 /* MODULE Cpu. */
 
-/* {Default RTOS Adapter} No RTOS includes */
+#include "FreeRTOS.h" /* FreeRTOS interface */
 #include "CLS1.h"
 #include "MCUC1.h"
 #include "WAIT1.h"
@@ -329,6 +329,8 @@
 #include "BitIoLdd20.h"
 #include "MCP4728_RDY.h"
 #include "BitIoLdd21.h"
+#include "FRTOS1.h"
+#include "RTOSCNTRLDD1.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
@@ -530,21 +532,6 @@ PE_ISR(Cpu_ivINT_Reserved10)
 
 /*
 ** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_SVCall (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_SVCall)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_DebugMonitor (component MK22FN1M0LK12)
 **
 **     Description :
@@ -568,36 +555,6 @@ PE_ISR(Cpu_ivINT_DebugMonitor)
 ** ===================================================================
 */
 PE_ISR(Cpu_ivINT_Reserved13)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_PendableSrvReq (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_PendableSrvReq)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_SysTick (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_SysTick)
 {
   /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
   PE_DEBUGHALT();
@@ -1310,21 +1267,6 @@ PE_ISR(Cpu_ivINT_RTC_Seconds)
 
 /*
 ** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_PIT0 (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_PIT0)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_PIT2 (component MK22FN1M0LK12)
 **
 **     Description :
@@ -2002,6 +1944,8 @@ void PE_low_level_init(void)
   (void)BitIoLdd20_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd21" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd21_Init(NULL);
+  /* ### FreeRTOS "FRTOS1" init code ... */
+  /* PEX_RTOS_INIT() should have been called at this time already with the most critical setup */
   /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)TimerIntLdd1_Init(NULL);
   /* ### TimerInt "TI1" init code ... */
@@ -2071,8 +2015,6 @@ void PE_low_level_init(void)
 #if TmDt1_INIT_IN_STARTUP
   (void)TmDt1_Init();
 #endif
-  /* Enable interrupts of the given priority level */
-  Cpu_SetBASEPRI(0U);
 }
   /* Flash configuration field */
   __attribute__ ((section (".cfmconfig"))) const uint8_t _cfm[0x10] = {

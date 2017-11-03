@@ -1061,7 +1061,7 @@ push-pull
     </Events>
   </Bean>
   <Bean name="FRTOS1" type="FreeRTOS">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="FRTOS1" />
       <RTOS_Version v="V9.0.0" />
@@ -1077,7 +1077,7 @@ push-pull
       <configASSERT v="yes" />
       <Application_Task_Tags v="no" />
       <Thread_Local_Storage_Pointers v="0" />
-      <Use_Trace_Facility v="no" />
+      <Use_Trace_Facility v="yes" />
       <group name="Debug Helpers">
         <Enable_GDB_Debug_Helper v="no" />
         <Enable_LinkTimeOptimizer_Helper v="no" />
@@ -1092,7 +1092,7 @@ push-pull
         <Use_Tick_Counter v="no" />
         <boolgroup name="LDD" v="Enabled">
           <inhrbean type="TimerUnit_LDD">
-            <Enabled v="N" />
+            <Enabled v="Y" />
             <Template v="RuntimeCntrLDD" />
             <Properties>
               <Component_name v="RTOSCNTRLDD1" />
@@ -1119,14 +1119,14 @@ push-pull
                 <Enabled_in_init__code v="yes" />
                 <group name="Event mask">
                   <OnCounterRestart v="Enabled" />
-                  <OnChannel0 v="Enabled" />
-                  <OnChannel1 v="Enabled" />
-                  <OnChannel2 v="Enabled" />
-                  <OnChannel3 v="Enabled" />
-                  <OnChannel4 v="Enabled" />
-                  <OnChannel5 v="Enabled" />
-                  <OnChannel6 v="Enabled" />
-                  <OnChannel7 v="Enabled" />
+                  <OnChannel0 v="Disabled" />
+                  <OnChannel1 v="Disabled" />
+                  <OnChannel2 v="Disabled" />
+                  <OnChannel3 v="Disabled" />
+                  <OnChannel4 v="Disabled" />
+                  <OnChannel5 v="Disabled" />
+                  <OnChannel6 v="Disabled" />
+                  <OnChannel7 v="Disabled" />
                 </group>
               </group>
             </Properties>
@@ -1203,7 +1203,7 @@ push-pull
       </group>
       <group name="Ticks">
         <boolgroup name="Tickless Idle Mode" v="Disabled" />
-        <Tick_Rate__Hz_ v="100" />
+        <Tick_Rate__Hz_ v="1000" />
         <Use_16bit_ticks v="no" />
         <boolgroup name="non-LDD Tick" v="Disabled" />
         <boolgroup name="LDD Tick" v="Disabled" />
@@ -1220,7 +1220,7 @@ push-pull
       <group name="Memory">
         <boolgroup name="Dynamic Allocation" v="Enabled">
           <Application_allocated_Heap v="no" />
-          <Heap_Size v="1024" />
+          <Heap_Size v="8192" />
           <Linker_Heap_Base_Symbol v="__HeapBase" />
           <Linker_Heap_Limit_Symbol v="__HeapLimit" />
           <Linker_Heap_Size_Symbol v="__heap_size" />
@@ -1295,7 +1295,7 @@ push-pull
       <pcTaskGetTaskName v="generate code" />
       <eTaskGetState v="don&amp;apos;t generate code" />
       <xTaskGetSchedulerState v="generate code" />
-      <vTaskList v="don&amp;apos;t generate code" />
+      <vTaskList v="generate code" />
       <uxTaskGetStackHighWaterMark v="generate code" />
       <uxTaskGetNumberOfTasks v="generate code" />
       <vTaskGetRunTimeStats v="generate code" />
