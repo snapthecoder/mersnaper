@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-05, 14:06, # CodeGen: 0
+**     Date/Time   : 2017-11-03, 15:01, # CodeGen: 5
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -22,7 +22,7 @@
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match
 **            Period device                                : FTM0_MOD
-**            Period                                       : 1000 ms
+**            Period                                       : 1 ms
 **            Interrupt                                    : Enabled
 **              Interrupt                                  : INT_FTM0
 **              Interrupt priority                         : minimal priority
@@ -119,10 +119,10 @@ extern "C" {
 #define __BWUserType_TU1_TValueType
   typedef uint16_t TU1_TValueType ;    /* Type for data parameters of methods */
 #endif
-#define TU1_CNT_INP_FREQ_U_0 0x7A12UL  /* Counter input frequency in Hz */
-#define TU1_CNT_INP_FREQ_R_0 31250.0F  /* Counter input frequency in Hz */
+#define TU1_CNT_INP_FREQ_U_0 0x016E3600UL /* Counter input frequency in Hz */
+#define TU1_CNT_INP_FREQ_R_0 23999808.00153599F /* Counter input frequency in Hz */
 #define TU1_CNT_INP_FREQ_COUNT 0U      /* Count of predefined counter input frequencies */
-#define TU1_PERIOD_TICKS   0x7A12UL    /* Initialization value of period in 'counter ticks' */
+#define TU1_PERIOD_TICKS   0x5DC0UL    /* Initialization value of period in 'counter ticks' */
 #define TU1_NUMBER_OF_CHANNELS 0x00U   /* Count of predefined channels */
 #define TU1_COUNTER_WIDTH  0x10U       /* Counter width in bits  */
 #define TU1_COUNTER_DIR    DIR_UP      /* Direction of counting */

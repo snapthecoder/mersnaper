@@ -80,6 +80,7 @@ static void BtnMsg(int btn, const char *msg) {
 void APP_EventHandler(EVNT_Handle event) {
   /*! \todo handle events */
   switch(event) {
+
   case EVNT_STARTUP:
     {
       int i;
@@ -90,43 +91,86 @@ void APP_EventHandler(EVNT_Handle event) {
       LED1_Off();
     }
     break;
-  case EVNT_LED_HEARTBEAT:
-    LED2_Neg();
 
-    break;
+  case EVNT_LED_HEARTBEAT:
+	  LED1_Neg();
+	  break;
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
-    BtnMsg(1, "pressed");
+     BtnMsg(1, "pressed");
      break;
-
   case EVNT_SW1_LPRESSED:
-    BtnMsg(1, "long pressed");
+     BtnMsg(1, "long pressed");
      break;
   case EVNT_SW1_RELEASED:
-    BtnMsg(1, "released");
+     BtnMsg(1, "released");
      break;
+#endif
 #if PL_CONFIG_NOF_KEYS>=2
   case EVNT_SW2_PRESSED:
-     BtnMsg(1, "pressed");
-      break;
+     BtnMsg(2, "pressed");
+     break;
   case EVNT_SW2_LPRESSED:
-     BtnMsg(1, "long pressed");
-      break;
+     BtnMsg(2, "long pressed");
+     break;
   case EVNT_SW2_RELEASED:
-	 BtnMsg(1, "released");
-      break;
+     BtnMsg(2, "released");
+     break;
 #endif
 #if PL_CONFIG_NOF_KEYS>=3
   case EVNT_SW3_PRESSED:
-    BtnMsg(1, "pressed");
+     BtnMsg(3, "pressed");
      break;
   case EVNT_SW3_LPRESSED:
-    BtnMsg(1, "long pressed");
+     BtnMsg(3, "long pressed");
      break;
   case EVNT_SW3_RELEASED:
-    BtnMsg(1, "released");
+     BtnMsg(3, "released");
      break;
 #endif
+#if PL_CONFIG_NOF_KEYS>=4
+  case EVNT_SW4_PRESSED:
+     BtnMsg(4, "pressed");
+     break;
+  case EVNT_SW4_LPRESSED:
+     BtnMsg(4, "long pressed");
+     break;
+  case EVNT_SW4_RELEASED:
+     BtnMsg(4, "released");
+     break;
+#endif
+#if PL_CONFIG_NOF_KEYS>=5
+  case EVNT_SW5_PRESSED:
+     BtnMsg(5, "pressed");
+     break;
+  case EVNT_SW5_LPRESSED:
+     BtnMsg(5, "long pressed");
+     break;
+  case EVNT_SW5_RELEASED:
+     BtnMsg(5, "released");
+     break;
+#endif
+#if PL_CONFIG_NOF_KEYS>=6
+  case EVNT_SW6_PRESSED:
+     BtnMsg(6, "pressed");
+     break;
+  case EVNT_SW6_LPRESSED:
+     BtnMsg(6, "long pressed");
+     break;
+  case EVNT_SW6_RELEASED:
+     BtnMsg(6, "released");
+     break;
+#endif
+#if PL_CONFIG_NOF_KEYS>=7
+  case EVNT_SW7_PRESSED:
+     BtnMsg(7, "pressed");
+     break;
+  case EVNT_SW7_LPRESSED:
+     BtnMsg(7, "long pressed");
+     break;
+  case EVNT_SW7_RELEASED:
+     BtnMsg(7, "released");
+     break;
 #endif
     default:
       break;
@@ -215,19 +259,20 @@ void APP_Start(void) {
   APP_AdoptToHardware();
   __asm volatile("cpsid i"); /* disable interrupts */
   __asm volatile("cpsie i"); /* enable interrupts */
-  EVNT_SetEvent(EVNT_STARTUP);
+
+   EVNT_SetEvent(EVNT_STARTUP);
    CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
    //BUZ_PlayTune(0);
    //BUZ_PlayTune(2);
    //BUZ_PlayTune(3);
    for(;;) {
-	#if PL_CONFIG_HAS_DEBOUNCE
-	   KEYDBNC_Process();
-	#else
-	   KEY_Scan(); /* scan keys and set events */
-	#endif
-	WAIT1_WaitOSms(50);
-	EVNT_HandleEvent(APP_EventHandler, TRUE);
+		#if PL_CONFIG_HAS_DEBOUNCE
+	   	   KEYDBNC_Process();
+		#else
+	   	   KEY_Scan(); /* scan keys and set events */
+		#endif
+	   	WAIT1_WaitOSms(50);
+	    EVNT_HandleEvent(APP_EventHandler, TRUE);
   }
 }
 
