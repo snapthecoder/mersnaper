@@ -5,6 +5,7 @@
  */
 
 #include "Platform.h"
+#if PL_CONFIG_HAS_RTOS
 #include "Application.h"
 #include "Event.h"
 #include "LED.h"
@@ -24,10 +25,8 @@
 #if PL_CONFIG_HAS_BUZZER
   #include "Buzzer.h"
 #endif
-#if PL_CONFIG_HAS_RTOS
   #include "FRTOS1.h"
   #include "RTOS.h"
-#endif
 #if PL_CONFIG_HAS_QUADRATURE
   #include "Q4CLeft.h"
   #include "Q4CRight.h"
@@ -54,18 +53,6 @@
 
 #define normalTaskStackSize (200/sizeof(StackType_t));
 
-void RTOS_Init(void) {
-  /*! \todo Create tasks here */
-	 BaseType_t res ;
-	xTaskHandle taskHndl ;
-	res= FRTOS1_xTaskCreate(MyBlinkyTask,"Blinky",200, NULL,tskIDLE_PRIORITY,&taskHndl);
-	 if ( res !=pdPASS) { }
-
-}
-
-void RTOS_Deinit(void) {
-  /* nothing needed for now */
-}
 
 void MyBlinkyTask (void *pvParam){
 	TickType_t xLastWakeTime = xTaskGetTickCount();
@@ -99,7 +86,19 @@ void  RTOS_APP_Start(void){
 	  FRTOS1_vTaskStartScheduler();
 }
 
+#endif
 
+void RTOS_Init(void) {
+  /*! \todo Create tasks here */
+	 BaseType_t res ;
+	xTaskHandle taskHndl ;
+	res= FRTOS1_xTaskCreate(MyBlinkyTask,"Blinky",200, NULL,tskIDLE_PRIORITY,&taskHndl);
+	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
+	 if ( res !=pdPASS) { }
 
+}
 
+void RTOS_Deinit(void) {
+  /* nothing needed for now */
+}
 
