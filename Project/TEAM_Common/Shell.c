@@ -348,6 +348,7 @@ static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const
     if (UTIL1_xatoi(&p, &val)==ERR_OK) {
       SHELL_val = val;
       *handled = TRUE;
+
     } else {
       return ERR_FAILED; /* wrong format of command? */
     }
