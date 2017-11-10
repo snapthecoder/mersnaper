@@ -387,7 +387,10 @@ static void ShellTask(void *pvParameters) {
 #elif PL_CONFIG_HAS_SHELL_QUEUE /* !PL_CONFIG_SQUEUE_SINGLE_CHAR */
     {
       /*! \todo Handle shell queue */
-   }
+    	char* ptr = SQUEUE_ReceiveMessage();
+    	CLS1_SendStr(ptr, CLS1_GetStdio()->stdOut);
+    	vPortFree((void*)ptr);
+    }
 #endif /* PL_CONFIG_HAS_SHELL_QUEUE */
     vTaskDelay(pdMS_TO_TICKS(10));
   } /* for */
