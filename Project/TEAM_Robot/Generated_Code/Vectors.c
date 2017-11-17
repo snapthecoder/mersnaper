@@ -6,7 +6,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
+**     Date/Time   : 2017-11-17, 14:45, # CodeGen: 34
 **     Abstract    :
 **
 **     Settings    :
@@ -82,6 +82,7 @@
   #include "BUZ1.h"
   #include "BitIoLdd4.h"
   #include "RTT1.h"
+  #include "SYS1.h"
   #include "LED_IR.h"
   #include "LEDpin3.h"
   #include "BitIoLdd5.h"

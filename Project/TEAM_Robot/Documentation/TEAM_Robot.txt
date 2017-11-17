@@ -737,6 +737,7 @@ Module "FRTOS1"    (component FreeRTOS)
                 vTaskGetInfo() populates a TaskStatus_t structures for just a single task. The TaskStatus_t structure contains, 
                 among other things, members for the task handle, task name, task priority, task state, and total amount of run 
                 time consumed by the task.
+   - FRTOS1_ParseCommand -Shell Command Line Parser
    - FRTOS1_AppConfigureTimerForRuntimeStats -Configures the timer for generating runtime statistics
    - FRTOS1_AppGetRuntimeCounterValueFromISR -returns the current runtime counter. Function can be called from an interrupt 
                 service routine.
@@ -806,6 +807,24 @@ Module "RTT1"      (component SeggerRTT)
    - RTT1_GetStdio -Returns a pointer to the standard I/O
    - RTT1_Deinit -Driver deinitialization
    - RTT1_Init -Initializes the RTT Control Block.
+
+Module "SYS1"      (component SeggerSystemView)
+   - SYS1_OnUserStart -Send a user event start, such as start of a subroutine for profiling.
+   - SYS1_OnUserStop -Send a user event stop, such as return of a subroutine for profiling.
+   - SYS1_RecordEnterISR -Records the enter of an ISR. Place this call at the beginning of the interrupt service routine.
+   - SYS1_RecordExitISR -Records the end of the ISR. Call this function at the end of the ISR to be recorded.
+   - SYS1_Print -Prints a string to the host
+   - SYS1_PrintfHost -Prints a string using printf() to the host which is processed on the host
+   - SYS1_PrintfTarget -Prints a string using printf() to the host which is processed target
+   - SYS1_Warn -Prints a warning string to the host
+   - SYS1_WarnfHost -Prints a warning string using printf() to the host which is processed on the host
+   - SYS1_WarnfTarget -Prints a warning string using printf() to the host which is processed on the target
+   - SYS1_Error -Prints an error string to the host
+   - SYS1_ErrorfHost -Prints an error string using printf() to the host which is processed on the host
+   - SYS1_ErrorfTarget -Prints an error string using printf() to the host which is processed on the target
+   - SYS1_EnableEvents -Enables standard SystemView events to be generated.
+   - SYS1_DisableEvents -Disable standard SystemView events to not be generated.
+   - SYS1_Init -Driver Initialization
 
 Module "LED_IR"    (component LED)
    - LED_IR_On -This turns the LED on.

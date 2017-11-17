@@ -7,7 +7,7 @@
 **     Version     : Component 01.549, Driver 01.00, CPU db: 3.00.000
 **     Repository  : My Components
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-03, 15:21, # CodeGen: 31
+**     Date/Time   : 2017-11-17, 15:19, # CodeGen: 35
 **     Abstract    :
 **          This component implements the FreeRTOS Realtime Operating System
 **     Settings    :
@@ -32,7 +32,8 @@
 **            Heap Indication Constant                     : no
 **            Task C Additions                             : no
 **            Record Stack High Address                    : yes
-**          Segger System Viewer Trace                     : Disabled
+**          Segger System Viewer Trace                     : Enabled
+**            Segger System Viewer                         : SYS1
 **          Percepio Trace                                 : Disabled
 **          Generate Runtime Statistics                    : Enabled
 **            Use Tick Counter                             : no
@@ -95,7 +96,9 @@
 **            Critical section                             : Configures how critical sections are handled.
 **              User function for entering critical section: no
 **              User function for exiting critical section : no
-**          Shell                                          : Disabled
+**          Shell                                          : Enabled
+**            Max number of tasks                          : 8
+**            Shell                                        : CLS1
 **          Utility                                        : UTIL1
 **     Contents    :
 **         xTaskCreate                          - portBASE_TYPE FRTOS1_xTaskCreate(pdTASK_CODE pvTaskCode, const portCHAR *...
@@ -208,6 +211,7 @@
 **         pvTaskGetThreadLocalStoragePointer   - void* FRTOS1_pvTaskGetThreadLocalStoragePointer(TaskHandle_t xTaskToQuery,...
 **         pcTaskGetName                        - char* FRTOS1_pcTaskGetName(TaskHandle_t xTaskToQuery);
 **         vTaskGetInfo                         - void FRTOS1_vTaskGetInfo(TaskHandle_t xTask, TaskStatus_t *pxTaskStatus,...
+**         ParseCommand                         - uint8_t FRTOS1_ParseCommand(const unsigned char *cmd, bool *handled, const...
 **         AppConfigureTimerForRuntimeStats     - void FRTOS1_AppConfigureTimerForRuntimeStats(void);
 **         AppGetRuntimeCounterValueFromISR     - uint32_t FRTOS1_AppGetRuntimeCounterValueFromISR(void);
 **         Init                                 - void FRTOS1_Init(void);
@@ -263,7 +267,7 @@
 #include "FRTOS1config.h" /* configuration */
 
 #if configUSE_SHELL
-  #include "McuShell.h"
+  #include "CLS1.h"
 #endif
 
 /* other includes needed */
@@ -1719,6 +1723,25 @@ void RTOSCNTRLDD1_OnCounterRestart(LDD_TUserData *UserDataPtr);
 **         ---             - Returns pdTRUE if the semaphore was given.
 ** ===================================================================
 */
+
+#if configUSE_SHELL
+uint8_t FRTOS1_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
+/*
+** ===================================================================
+**     Method      :  FRTOS1_ParseCommand (component FreeRTOS)
+**     Description :
+**         Shell Command Line Parser
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**       * cmd             - Pointer to command string
+**       * handled         - Pointer to variable which tells if
+**                           the command has been handled or not
+**       * io              - Pointer to I/O structure
+**     Returns     :
+**         ---             - Error code
+** ===================================================================
+*/
+#endif
 
 void FRTOS1_Init(void);
 /*

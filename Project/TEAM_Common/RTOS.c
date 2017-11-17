@@ -58,7 +58,7 @@ void MyBlinkyTask (void *pvParam){
 	TickType_t xLastWakeTime = xTaskGetTickCount();
 	for(;;){
 		LED1_Neg();
-		WAIT1_Waitms(200);
+		//WAIT1_Waitms(200);
 		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
 	}
 }
@@ -83,6 +83,7 @@ void  RTOS_APP_Start(void){
 	  __asm volatile("cpsie i"); /* enable interrupts */
 	  EVNT_SetEvent(EVNT_STARTUP);
 	  CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
+	  CLS1_SendStr("\nReflectances Sensors started..\n", CLS1_GetStdio()->stdOut);
 	  FRTOS1_vTaskStartScheduler();
 }
 
@@ -94,6 +95,8 @@ void RTOS_Init(void) {
 	xTaskHandle taskHndl ;
 	res= FRTOS1_xTaskCreate(MyBlinkyTask,"Blinky",200, NULL,tskIDLE_PRIORITY,&taskHndl);
 	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
+	//res= FRTOS1_xTaskCreate(MyAPPTask,"ReflTask",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
+
 	 if ( res !=pdPASS) { }
 
 }

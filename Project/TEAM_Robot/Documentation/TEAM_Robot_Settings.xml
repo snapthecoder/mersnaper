@@ -1086,7 +1086,9 @@ push-pull
         <Task_C_Additions v="no" />
         <Record_Stack_High_Address v="yes" />
       </group>
-      <boolgroup name="Segger System Viewer Trace" v="Disabled" />
+      <boolgroup name="Segger System Viewer Trace" v="Enabled">
+        <Segger_System_Viewer v="SYS1" />
+      </boolgroup>
       <boolgroup name="Percepio Trace" v="Disabled" />
       <boolgroup name="Generate Runtime Statistics" v="Enabled">
         <Use_Tick_Counter v="no" />
@@ -1239,7 +1241,10 @@ push-pull
           <boolgroup name="User function for exiting critical section" v="no" />
         </group>
       </group>
-      <boolgroup name="Shell" v="Disabled" />
+      <boolgroup name="Shell" v="Enabled">
+        <Max_number_of_tasks v="8" />
+        <Shell v="CLS1" />
+      </boolgroup>
       <Utility v="UTIL1" />
     </Properties>
     <Methods>
@@ -1364,7 +1369,7 @@ push-pull
       <pvTaskGetThreadLocalStoragePointer v="generate code" />
       <pcTaskGetName v="generate code" />
       <vTaskGetInfo v="generate code" />
-      <ParseCommand v="don&amp;apos;t generate code" />
+      <ParseCommand v="generate code" />
       <AppConfigureTimerForRuntimeStats v="generate code" />
       <AppGetRuntimeCounterValueFromISR v="generate code" />
       <Init v="generate code" />
@@ -1689,7 +1694,7 @@ push-pull
     </Events>
   </Bean>
   <Bean name="SYS1" type="SeggerSystemView">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="SYS1" />
       <Version v="V2.42" />

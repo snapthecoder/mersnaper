@@ -1077,7 +1077,7 @@ push-pull
       <configASSERT v="yes" />
       <Application_Task_Tags v="no" />
       <Thread_Local_Storage_Pointers v="0" />
-      <Use_Trace_Facility v="no" />
+      <Use_Trace_Facility v="yes" />
       <group name="Debug Helpers">
         <Enable_GDB_Debug_Helper v="no" />
         <Enable_LinkTimeOptimizer_Helper v="no" />
@@ -1086,7 +1086,9 @@ push-pull
         <Task_C_Additions v="no" />
         <Record_Stack_High_Address v="yes" />
       </group>
-      <boolgroup name="Segger System Viewer Trace" v="Disabled" />
+      <boolgroup name="Segger System Viewer Trace" v="Enabled">
+        <Segger_System_Viewer v="SYS1" />
+      </boolgroup>
       <boolgroup name="Percepio Trace" v="Disabled" />
       <boolgroup name="Generate Runtime Statistics" v="Enabled">
         <Use_Tick_Counter v="no" />
@@ -1295,7 +1297,7 @@ push-pull
       <pcTaskGetTaskName v="generate code" />
       <eTaskGetState v="don&amp;apos;t generate code" />
       <xTaskGetSchedulerState v="generate code" />
-      <vTaskList v="don&amp;apos;t generate code" />
+      <vTaskList v="generate code" />
       <uxTaskGetStackHighWaterMark v="generate code" />
       <uxTaskGetNumberOfTasks v="generate code" />
       <vTaskGetRunTimeStats v="generate code" />
@@ -1689,7 +1691,7 @@ push-pull
     </Events>
   </Bean>
   <Bean name="SYS1" type="SeggerSystemView">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="SYS1" />
       <Version v="V2.42" />

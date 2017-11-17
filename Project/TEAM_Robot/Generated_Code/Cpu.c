@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
+**     Date/Time   : 2017-11-17, 14:45, # CodeGen: 34
 **     Abstract    :
 **
 **     Settings    :
@@ -337,6 +337,7 @@
 #include "BUZ1.h"
 #include "BitIoLdd4.h"
 #include "RTT1.h"
+#include "SYS1.h"
 #include "LED_IR.h"
 #include "LEDpin3.h"
 #include "BitIoLdd5.h"
@@ -1944,6 +1945,10 @@ void PE_low_level_init(void)
   (void)BitIoLdd20_Init(NULL);
   /* ### BitIO_LDD "BitIoLdd21" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd21_Init(NULL);
+  /* ### SeggerRTT "RTT1" init code ... */
+  RTT1_Init();
+  /* ### SeggerSystemView "SYS1" init code ... */
+  SYS1_Init();
   /* ### FreeRTOS "FRTOS1" init code ... */
   /* PEX_RTOS_INIT() should have been called at this time already with the most critical setup */
   /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
@@ -1951,8 +1956,6 @@ void PE_low_level_init(void)
   /* ### TimerInt "TI1" init code ... */
   /* ### BitIO_LDD "BitIoLdd4" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd4_Init(NULL);
-  /* ### SeggerRTT "RTT1" init code ... */
-  RTT1_Init();
   /* ### BitIO_LDD "BitIoLdd5" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)BitIoLdd5_Init(NULL);
   /* ### LED "LED_IR" init code ... */
