@@ -33,6 +33,10 @@
 #endif
 #if PL_CONFIG_HAS_MOTOR
   #include "Motor.h"
+	#include "DIRR.h"
+	#include "DIRL.h"
+	#include "PWMR.h"
+	#include "PWML.h"
 #endif
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
@@ -54,13 +58,17 @@
 #define normalTaskStackSize (200/sizeof(StackType_t));
 
 
-void MyBlinkyTask (void *pvParam){
-	TickType_t xLastWakeTime = xTaskGetTickCount();
-	for(;;){
-		LED1_Neg();
-		//WAIT1_Waitms(200);
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(100));
-	}
+void DriveTask (void *pvParameters){
+	  (void)pvParameters; /* not used */
+	  DIRL_PutVal(0);
+	  DIRR_PutVal(1);
+	 // DirLPutVal(MOT_DIR_FORWARD);
+	  //DirLPutVal(MOT_DIR_FORWARD);
+	  for(;;) {
+		  APP_Drive();
+		  FRTOS1_vTaskDelay(pdMS_TO_TICKS(30));
+	  }
+
 }
 void MyAPPTask (void *pvParam){
 	   for(;;) {
@@ -93,7 +101,7 @@ void RTOS_Init(void) {
   /*! \todo Create tasks here */
 	 BaseType_t res ;
 	xTaskHandle taskHndl ;
-	res= FRTOS1_xTaskCreate(MyBlinkyTask,"Blinky",200, NULL,tskIDLE_PRIORITY,&taskHndl);
+	res= FRTOS1_xTaskCreate(DriveTask,"Drive",200, NULL,tskIDLE_PRIORITY,&taskHndl);
 	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 	//res= FRTOS1_xTaskCreate(MyAPPTask,"ReflTask",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 

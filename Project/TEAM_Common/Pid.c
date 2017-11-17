@@ -493,5 +493,7 @@ void PID_Init(void) {
   config.posRightConfig.integral = config.posLeftConfig.integral;
   config.posRightConfig.maxSpeedPercent = config.posLeftConfig.maxSpeedPercent;
 }
+}
+
 
 #endif /* PL_CONFIG_HAS_PID */

@@ -36,6 +36,10 @@
 #endif
 #if PL_CONFIG_HAS_MOTOR
   #include "Motor.h"
+	#include "DIRR.h"
+	#include "DIRL.h"
+	#include "PWMR.h"
+	#include "PWML.h"
 #endif
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
@@ -97,6 +101,7 @@ void APP_EventHandler(EVNT_Handle event) {
 	  break;
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
+	 REF_CalibrateStartStop();
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
@@ -253,9 +258,51 @@ void APP_AdoptToHardware(void) {
   PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 17, PORT_PDD_PULL_ENABLE);
 #endif
 }
-//static void MyAppTask(void *pvParam){
-	//if(FRTOS1_xTaskCreate(MyBlinkyTask, "Blinky", 500/sizeof(), NULL, tskIDLE_PRIORITy+1, NULL)!=pdPass; )
-//}
+DriveState status = REF_LINE_NONE;
+void APP_Drive(void){
+	status = REF_GetLineKind();
+	switch (status){
+	case REF_LINE_NONE:     /* no line, sensors do not see a line */
+		  DIRL_PutVal(0);
+		  DIRR_PutVal(0);
+		  PWMR_SetRatio16(30000);
+		  PWML_SetRatio16(30000);
+		  WAIT1_Waitms(500);
+
+	break;
+	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
+		  DIRL_PutVal(0);
+		  DIRR_PutVal(1);
+		  PWMR_SetRatio16(50000);
+		  PWML_SetRatio16(50000);
+	break;
+	case REF_LINE_LEFT:    /* left half of sensors see line */
+		  DIRL_PutVal(0);
+		  DIRR_PutVal(0);
+		  PWMR_SetRatio16(30000);
+		  PWML_SetRatio16(30000);
+		  WAIT1_Waitms(500);
+	break;
+	case REF_LINE_RIGHT:   /* right half of sensors see line */
+		  DIRL_PutVal(0);
+		  DIRR_PutVal(0);
+		  PWMR_SetRatio16(30000);
+		  PWML_SetRatio16(30000);
+		  WAIT1_Waitms(500);
+	break;
+	case REF_LINE_FULL:     /* all sensors see a line */
+		  DIRL_PutVal(0);
+		  DIRR_PutVal(1);
+		  PWMR_SetRatio16(50000);
+		  PWML_SetRatio16(50000);
+	break;
+	case REF_NOF_LINES:        /* Sentinel */
+	break;
+	}
+
+}
+
+
 
 
 void APP_Start(void) {

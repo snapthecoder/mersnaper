@@ -16,8 +16,15 @@
 
 void APP_EventHandler(EVNT_Handle event);
 #endif
-
+void APP_Drive(void);
 void APP_Start(void);
 void APP_AdoptToHardware(void);
+typedef enum {
+  NONE=0,     /* no line, sensors do not see a line */
+  STRAIGHT=1, /* forward line |, sensors see a line underneath */
+  TURNLEFT=2,     /* left half of sensors see line */
+  TURNRIGHT=3,    /* right half of sensors see line */
+
+} DriveState;
 
 #endif /* SOURCES_FS2016_COMMON_APPLICATION_H_ */

@@ -17,7 +17,7 @@ void RTOS_Init(void);
 /*! \brief De-Initializes the RTOS module */
 void RTOS_Deinit(void);
 
-void MyBlinkyTask(void *pvParam);
+void DriveTask (void *pvParameters);
 void MyAPPTask (void *pvParam);
 void  RTOS_APP_Start(void);
 
