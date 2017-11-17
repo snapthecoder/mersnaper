@@ -69,7 +69,8 @@ void MyAPPTask (void *pvParam){
 		#else
 		   KEY_Scan(); /* scan keys and set events */
 		#endif
-		WAIT1_WaitOSms(50);
+		//WAIT1_WaitOSms(50);
+		FRTOS1_vTaskDelay(pdMS_TO_TICKS(10));
 		EVNT_HandleEvent(APP_EventHandler, TRUE);
 	  }
 }
@@ -83,7 +84,6 @@ void  RTOS_APP_Start(void){
 	  __asm volatile("cpsie i"); /* enable interrupts */
 	  EVNT_SetEvent(EVNT_STARTUP);
 	  CLS1_SendStr("\nHello World\n", CLS1_GetStdio()->stdOut);
-	  CLS1_SendStr("\nReflectances Sensors started..\n", CLS1_GetStdio()->stdOut);
 	  FRTOS1_vTaskStartScheduler();
 }
 
