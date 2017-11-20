@@ -101,7 +101,9 @@ void RTOS_Init(void) {
   /*! \todo Create tasks here */
 	 BaseType_t res ;
 	xTaskHandle taskHndl ;
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
 	res= FRTOS1_xTaskCreate(DriveTask,"Drive",200, NULL,tskIDLE_PRIORITY,&taskHndl);
+	#endif
 	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 	//res= FRTOS1_xTaskCreate(MyAPPTask,"ReflTask",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 

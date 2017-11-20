@@ -81,6 +81,7 @@ static void BtnMsg(int btn, const char *msg) {
 #endif
 }
 
+int dummyFlag=0;
 void APP_EventHandler(EVNT_Handle event) {
   /*! \todo handle events */
   switch(event) {
@@ -101,11 +102,16 @@ void APP_EventHandler(EVNT_Handle event) {
 	  break;
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
 	 REF_CalibrateStartStop();
+	#endif
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
-     BtnMsg(1, "long pressed");
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+	 dummyFlag=1;
+	#endif
+	 BtnMsg(1, "long pressed");
      break;
   case EVNT_SW1_RELEASED:
      BtnMsg(1, "released");
@@ -261,6 +267,7 @@ void APP_AdoptToHardware(void) {
 DriveState status = REF_LINE_NONE;
 void APP_Drive(void){
 	status = REF_GetLineKind();
+	if(dummyFlag=1){
 	switch (status){
 	case REF_LINE_NONE:     /* no line, sensors do not see a line */
 		  DIRL_PutVal(0);
@@ -298,7 +305,7 @@ void APP_Drive(void){
 	break;
 	case REF_NOF_LINES:        /* Sentinel */
 	break;
-	}
+	}}
 
 }
 
