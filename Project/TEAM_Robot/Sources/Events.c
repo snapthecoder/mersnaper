@@ -75,6 +75,8 @@ void Cpu_OnNMIINT(void)
 void QuadInt_OnInterrupt(void)
 {
   /* Write your code here ... */
+	Q4CLeft_Sample();
+	Q4CRight_Sample();
 }
 
 /*
@@ -203,6 +205,40 @@ void FRTOS1_vApplicationMallocFailedHook(void)
   taskDISABLE_INTERRUPTS();
   /* Write your code here ... */
   for(;;) {}
+}
+
+/*
+** ===================================================================
+**     Event       :  GI2C1_OnRequestBus (module Events)
+**
+**     Component   :  GI2C1 [GenericI2C]
+**     Description :
+**         User event which will be called before accessing the I2C bus.
+**         Useful for starting a critical section.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void GI2C1_OnRequestBus(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  GI2C1_OnReleaseBus (module Events)
+**
+**     Component   :  GI2C1 [GenericI2C]
+**     Description :
+**         User event which will be called after accessing the I2C bus.
+**         Useful for ending a critical section.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void GI2C1_OnReleaseBus(void)
+{
+  /* Write your code here ... */
 }
 
 /* END Events */

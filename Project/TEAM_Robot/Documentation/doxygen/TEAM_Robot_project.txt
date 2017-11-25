@@ -60,6 +60,7 @@
 - \subpage IntFlashLdd1
 - \subpage USB0
 - \subpage ADC_Bat
+- \subpage I2C1
 
 */
 

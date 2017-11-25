@@ -42,10 +42,10 @@ by the component.
 <td class="regNotResetVal">0x00000001</td>
  <td>PIT_TFLG1 register, peripheral TU_QuadInt.</td></tr>
 <tr><td>0x40037110</td><td>PIT_LDVAL1</td>
-<td class="regNotResetVal">0x000927BF</td>
+<td class="regNotResetVal">0x00000257</td>
  <td>PIT_LDVAL1 register, peripheral TU_QuadInt.</td></tr>
 <tr><td>0xE000E431</td><td>NVICIP49</td>
-<td class="regNotResetVal">0x000000F0</td>
+<td class="regNotResetVal">0x00000050</td>
  <td>NVICIP49 register, peripheral TU_QuadInt.</td></tr>
 </table>
 Color Denotes Reset Value
@@ -531,7 +531,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40037110</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x000927BF</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000257</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>TSV</td><td>0x00</td><td>Timer Start Value</td>
@@ -555,10 +555,10 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E431</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x000000F0</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000050</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
-<tr><td>0 - 7</td><td>PRI49</td><td>0x80</td><td>Priority of interrupt 49</td>
+<tr><td>0 - 7</td><td>PRI49</td><td>0x00</td><td>Priority of interrupt 49</td>
 </tr></table>
 */
 /*!
@@ -574,10 +574,10 @@ registers of the peripheral(s) configured by the component.
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match
 **            Period device                                : PIT_LDVAL1
-**            Period                                       : 10 ms
+**            Period                                       : 0.01 ms
 **            Interrupt                                    : Enabled
 **              Interrupt                                  : INT_PIT1
-**              Interrupt priority                         : minimal priority
+**              Interrupt priority                         : high priority
 **          Channel list                                   : 0
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes

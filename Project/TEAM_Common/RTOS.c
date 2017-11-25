@@ -60,10 +60,7 @@
 
 void DriveTask (void *pvParameters){
 	  (void)pvParameters; /* not used */
-	  DIRL_PutVal(0);
-	  DIRR_PutVal(1);
-	 // DirLPutVal(MOT_DIR_FORWARD);
-	  //DirLPutVal(MOT_DIR_FORWARD);
+
 	  for(;;) {
 		  APP_Drive();
 		  FRTOS1_vTaskDelay(pdMS_TO_TICKS(30));
@@ -102,7 +99,7 @@ void RTOS_Init(void) {
 	 BaseType_t res ;
 	xTaskHandle taskHndl ;
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
-	res= FRTOS1_xTaskCreate(DriveTask,"Drive",200, NULL,tskIDLE_PRIORITY,&taskHndl);
+	//res= FRTOS1_xTaskCreate(DriveTask,"Drive",200, NULL,tskIDLE_PRIORITY,&taskHndl);
 	#endif
 	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 	//res= FRTOS1_xTaskCreate(MyAPPTask,"ReflTask",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);

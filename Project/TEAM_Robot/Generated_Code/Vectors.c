@@ -6,7 +6,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-17, 14:45, # CodeGen: 34
+**     Date/Time   : 2017-11-24, 16:06, # CodeGen: 40
 **     Abstract    :
 **
 **     Settings    :
@@ -131,6 +131,8 @@
   #include "USB0.h"
   #include "ADC_Bat.h"
   #include "TmDt1.h"
+  #include "I2C1.h"
+  #include "GI2C1.h"
   #include "Events.h"
 
 
@@ -190,7 +192,7 @@
     (tIsrFunc)&Cpu_ivINT_LLWU,         /* 0x25  0x00000094   -   ivINT_LLWU                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_WDOG_EWM,     /* 0x26  0x00000098   -   ivINT_WDOG_EWM                 unused by PE */
     (tIsrFunc)&Cpu_ivINT_Reserved39,   /* 0x27  0x0000009C   -   ivINT_Reserved39               unused by PE */
-    (tIsrFunc)&Cpu_ivINT_I2C0,         /* 0x28  0x000000A0   -   ivINT_I2C0                     unused by PE */
+    (tIsrFunc)&I2C1_Interrupt,         /* 0x28  0x000000A0   4   ivINT_I2C0                     used by PE */
     (tIsrFunc)&Cpu_ivINT_I2C1,         /* 0x29  0x000000A4   -   ivINT_I2C1                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_SPI0,         /* 0x2A  0x000000A8   -   ivINT_SPI0                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_SPI1,         /* 0x2B  0x000000AC   -   ivINT_SPI1                     unused by PE */
@@ -215,7 +217,7 @@
     (tIsrFunc)&Cpu_ivINT_RTC,          /* 0x3E  0x000000F8   -   ivINT_RTC                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_RTC_Seconds,  /* 0x3F  0x000000FC   -   ivINT_RTC_Seconds              unused by PE */
     (tIsrFunc)&RTOSCNTRLDD1_Interrupt, /* 0x40  0x00000100   8   ivINT_PIT0                     used by PE */
-    (tIsrFunc)&TU_QuadInt_Interrupt,   /* 0x41  0x00000104   15   ivINT_PIT1                     used by PE */
+    (tIsrFunc)&TU_QuadInt_Interrupt,   /* 0x41  0x00000104   5   ivINT_PIT1                     used by PE */
     (tIsrFunc)&Cpu_ivINT_PIT2,         /* 0x42  0x00000108   -   ivINT_PIT2                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PIT3,         /* 0x43  0x0000010C   -   ivINT_PIT3                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PDB0,         /* 0x44  0x00000110   -   ivINT_PDB0                     unused by PE */

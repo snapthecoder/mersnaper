@@ -6,7 +6,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-17, 14:45, # CodeGen: 34
+**     Date/Time   : 2017-11-24, 15:19, # CodeGen: 36
 **     Abstract    :
 **
 **     Settings    :
@@ -137,6 +137,8 @@
 #include "USB0.h"
 #include "ADC_Bat.h"
 #include "TmDt1.h"
+#include "I2C1.h"
+#include "GI2C1.h"
 
 
 /*

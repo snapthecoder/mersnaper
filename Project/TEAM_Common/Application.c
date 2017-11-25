@@ -267,14 +267,15 @@ void APP_AdoptToHardware(void) {
 DriveState status = REF_LINE_NONE;
 void APP_Drive(void){
 	status = REF_GetLineKind();
-	if(dummyFlag=1){
+	if(REF_IsReady()){
+
 	switch (status){
 	case REF_LINE_NONE:     /* no line, sensors do not see a line */
 		  DIRL_PutVal(0);
 		  DIRR_PutVal(0);
-		  PWMR_SetRatio16(30000);
-		  PWML_SetRatio16(30000);
-		  WAIT1_Waitms(500);
+		  PWMR_SetRatio16(50000);
+		  PWML_SetRatio16(50000);
+		  WAIT1_Waitms(200);
 
 	break;
 	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
@@ -284,18 +285,18 @@ void APP_Drive(void){
 		  PWML_SetRatio16(50000);
 	break;
 	case REF_LINE_LEFT:    /* left half of sensors see line */
-		  DIRL_PutVal(0);
-		  DIRR_PutVal(0);
-		  PWMR_SetRatio16(30000);
-		  PWML_SetRatio16(30000);
-		  WAIT1_Waitms(500);
+		  DIRL_PutVal(1);
+		  DIRR_PutVal(1);
+		  PWMR_SetRatio16(0);
+		  PWML_SetRatio16(0);
+		  WAIT1_Waitms(200);
 	break;
 	case REF_LINE_RIGHT:   /* right half of sensors see line */
 		  DIRL_PutVal(0);
 		  DIRR_PutVal(0);
-		  PWMR_SetRatio16(30000);
-		  PWML_SetRatio16(30000);
-		  WAIT1_Waitms(500);
+		  PWMR_SetRatio16(0);
+		  PWML_SetRatio16(0);
+		  WAIT1_Waitms(200);
 	break;
 	case REF_LINE_FULL:     /* all sensors see a line */
 		  DIRL_PutVal(0);
@@ -306,6 +307,9 @@ void APP_Drive(void){
 	case REF_NOF_LINES:        /* Sentinel */
 	break;
 	}}
+	else {
+		  PWMR_SetRatio16(65535);
+		  PWML_SetRatio16(65535);}
 
 }
 

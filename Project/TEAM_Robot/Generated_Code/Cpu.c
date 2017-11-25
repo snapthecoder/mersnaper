@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-17, 14:45, # CodeGen: 34
+**     Date/Time   : 2017-11-24, 15:19, # CodeGen: 36
 **     Abstract    :
 **
 **     Settings    :
@@ -386,6 +386,8 @@
 #include "USB0.h"
 #include "ADC_Bat.h"
 #include "TmDt1.h"
+#include "I2C1.h"
+#include "GI2C1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -916,21 +918,6 @@ PE_ISR(Cpu_ivINT_WDOG_EWM)
 ** ===================================================================
 */
 PE_ISR(Cpu_ivINT_Reserved39)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_I2C0 (component MK22FN1M0LK12)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_I2C0)
 {
   /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
   PE_DEBUGHALT();
@@ -1776,9 +1763,10 @@ void __init_hardware(void)
                 SIM_CLKDIV1_OUTDIV2(0x01) |
                 SIM_CLKDIV1_OUTDIV3(0x03) |
                 SIM_CLKDIV1_OUTDIV4(0x03); /* Set the system prescalers to safe value */
-  /* SIM_SCGC5: PORTD=1,PORTC=1,PORTA=1 */
+  /* SIM_SCGC5: PORTD=1,PORTC=1,PORTB=1,PORTA=1 */
   SIM_SCGC5 |= SIM_SCGC5_PORTD_MASK |
                SIM_SCGC5_PORTC_MASK |
+               SIM_SCGC5_PORTB_MASK |
                SIM_SCGC5_PORTA_MASK;   /* Enable clock gate for ports to enable pin routing */
   if ((PMC_REGSC & PMC_REGSC_ACKISO_MASK) != 0x0U) {
     /* PMC_REGSC: ACKISO=1 */
@@ -2018,6 +2006,8 @@ void PE_low_level_init(void)
 #if TmDt1_INIT_IN_STARTUP
   (void)TmDt1_Init();
 #endif
+  /* ### GenericI2C "GI2C1" init code ... */
+  GI2C1_Init();
 }
   /* Flash configuration field */
   __attribute__ ((section (".cfmconfig"))) const uint8_t _cfm[0x10] = {
