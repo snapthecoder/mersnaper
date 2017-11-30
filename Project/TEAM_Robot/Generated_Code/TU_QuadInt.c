@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-24, 16:06, # CodeGen: 40
+**     Date/Time   : 2017-11-30, 13:52, # CodeGen: 41
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -25,7 +25,7 @@
 **            Period                                       : 0.01 ms
 **            Interrupt                                    : Enabled
 **              Interrupt                                  : INT_PIT1
-**              Interrupt priority                         : high priority
+**              Interrupt priority                         : 2
 **          Channel list                                   : 0
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes
@@ -177,8 +177,8 @@ LDD_TDeviceData* TU_QuadInt_Init(LDD_TUserData *UserDataPtr)
   PIT_TFLG1 = PIT_TFLG_TIF_MASK;       /* Clear timer flag register */
   /* PIT_LDVAL1: TSV=0x0257 */
   PIT_LDVAL1 = PIT_LDVAL_TSV(0x0257);  /* Set up load register */
-  /* NVICIP49: PRI49=0x50 */
-  NVICIP49 = NVIC_IP_PRI49(0x50);
+  /* NVICIP49: PRI49=0x20 */
+  NVICIP49 = NVIC_IP_PRI49(0x20);
   /* NVICISER1: SETENA|=0x00020000 */
   NVICISER1 |= NVIC_ISER_SETENA(0x00020000);
   /* PIT_TCTRL1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,CHN=0,TIE=1,TEN=1 */

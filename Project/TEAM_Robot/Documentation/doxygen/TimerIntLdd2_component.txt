@@ -50,7 +50,7 @@ by the component.
 <td class="regNotResetVal">0x00000257</td>
  <td>PIT_LDVAL1 register, peripheral TimerIntLdd2.</td></tr>
 <tr><td>0xE000E431</td><td>NVICIP49</td>
-<td class="regNotResetVal">0x00000050</td>
+<td class="regNotResetVal">0x00000020</td>
  <td>NVICIP49 register, peripheral TimerIntLdd2.</td></tr>
 </table>
 Color Denotes Reset Value
@@ -560,7 +560,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E431</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000050</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000020</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 7</td><td>PRI49</td><td>0x00</td><td>Priority of interrupt 49</td>
@@ -574,7 +574,7 @@ registers of the peripheral(s) configured by the component.
 **          Counter                                        : PIT_CVAL1
 **          Interrupt service/event                        : Enabled
 **            Interrupt                                    : INT_PIT1
-**            Interrupt priority                           : high priority
+**            Interrupt priority                           : 2
 **          Interrupt period                               : 0.01 ms
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes

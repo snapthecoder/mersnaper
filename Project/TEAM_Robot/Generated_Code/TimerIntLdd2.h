@@ -7,7 +7,7 @@
 **     Version     : Component 01.018, Driver 01.02, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-24, 16:06, # CodeGen: 40
+**     Date/Time   : 2017-11-30, 13:52, # CodeGen: 41
 **     Abstract    :
 **          This TimerInt component implements a periodic interrupt.
 **          When the component and its events are enabled, the "OnInterrupt"
@@ -22,7 +22,7 @@
 **          Counter                                        : PIT_CVAL1
 **          Interrupt service/event                        : Enabled
 **            Interrupt                                    : INT_PIT1
-**            Interrupt priority                           : high priority
+**            Interrupt priority                           : 2
 **          Interrupt period                               : 0.01 ms
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes

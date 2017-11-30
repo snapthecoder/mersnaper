@@ -77,6 +77,7 @@ void QuadInt_OnInterrupt(void)
   /* Write your code here ... */
 	Q4CLeft_Sample();
 	Q4CRight_Sample();
+
 }
 
 /*
@@ -162,6 +163,7 @@ void FRTOS1_vApplicationTickHook(void)
 {
   /* Called for every RTOS tick. */
   /* Write your code here ... */
+  TACHO_Sample();
 }
 
 /*

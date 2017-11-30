@@ -6,7 +6,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-24, 16:06, # CodeGen: 40
+**     Date/Time   : 2017-11-30, 13:52, # CodeGen: 41
 **     Abstract    :
 **
 **     Settings    :
@@ -217,7 +217,7 @@
     (tIsrFunc)&Cpu_ivINT_RTC,          /* 0x3E  0x000000F8   -   ivINT_RTC                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_RTC_Seconds,  /* 0x3F  0x000000FC   -   ivINT_RTC_Seconds              unused by PE */
     (tIsrFunc)&RTOSCNTRLDD1_Interrupt, /* 0x40  0x00000100   8   ivINT_PIT0                     used by PE */
-    (tIsrFunc)&TU_QuadInt_Interrupt,   /* 0x41  0x00000104   5   ivINT_PIT1                     used by PE */
+    (tIsrFunc)&TU_QuadInt_Interrupt,   /* 0x41  0x00000104   2   ivINT_PIT1                     used by PE */
     (tIsrFunc)&Cpu_ivINT_PIT2,         /* 0x42  0x00000108   -   ivINT_PIT2                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PIT3,         /* 0x43  0x0000010C   -   ivINT_PIT3                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PDB0,         /* 0x44  0x00000110   -   ivINT_PDB0                     unused by PE */

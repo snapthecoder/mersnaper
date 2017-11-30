@@ -193,7 +193,7 @@ void APP_EventHandler(EVNT_Handle event) {
 static const KIN1_UID RoboIDs[] = {
   /* 0: L20, V2 */ {{0x00,0x03,0x00,0x00,0x67,0xCD,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
   /* 1: L21, V2 */ {{0x00,0x05,0x00,0x00,0x4E,0x45,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
-  /* 2: L4, V1  */ {{0x00,0x0B,0xFF,0xFF,0x4E,0x45,0xFF,0xFF,0x4E,0x45,0x27,0x99,0x10,0x02,0x00,0x24}},
+  /* 2: L4, V1  */ {{0x00,0x10,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x4E,0x45,0x27,0x99,0x10,0x02,0x00,0x25}},
   /* 3: L23, V2 */ {{0x00,0x0A,0x00,0x00,0x67,0xCD,0xB8,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
   /* 4: L11, V2 */ {{0x00,0x19,0x00,0x00,0x67,0xCD,0xB9,0x11,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
   /* 5: L5, V2 */  {{0x00,0x38,0x00,0x00,0x67,0xCD,0xB5,0x41,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
@@ -213,7 +213,7 @@ void APP_AdoptToHardware(void) {
 #if PL_CONFIG_HAS_MOTOR
   if (KIN1_UIDSame(&id, &RoboIDs[0])) { /* L20 */
 #if PL_CONFIG_HAS_QUADRATURE
-    (void)Q4CRight_SwapPins(TRUE);
+    (void)Q4CRight_SwapPins(FALSE);
 #endif
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert left motor */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), TRUE); /* invert left motor */
@@ -227,28 +227,28 @@ void APP_AdoptToHardware(void) {
 #endif
   } else if (KIN1_UIDSame(&id, &RoboIDs[3])) { /* L23 */
 #if PL_CONFIG_HAS_QUADRATURE
-    (void)Q4CRight_SwapPins(TRUE);
+    (void)Q4CRight_SwapPins(FALSE);
 #endif
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert left motor */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), TRUE); /* invert left motor */
   } else if (KIN1_UIDSame(&id, &RoboIDs[4])) { /* L11 */
 #if PL_CONFIG_HAS_QUADRATURE
-    (void)Q4CRight_SwapPins(TRUE);
+    (void)Q4CRight_SwapPins(FALSE);
 #endif
   } else if (KIN1_UIDSame(&id, &RoboIDs[5])) { /* L5, V2 */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), TRUE); /* invert right motor */
-    (void)Q4CRight_SwapPins(TRUE);
+    (void)Q4CRight_SwapPins(FALSE);
   } else if (KIN1_UIDSame(&id, &RoboIDs[6])) { /* L3, V1 */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert right motor */
 #if PL_CONFIG_HAS_QUADRATURE
-    (void)Q4CLeft_SwapPins(TRUE);
-    (void)Q4CRight_SwapPins(TRUE);
+    (void)Q4CLeft_SwapPins(FALSE);
+    (void)Q4CRight_SwapPins(FALSE);
 #endif
   } else if (KIN1_UIDSame(&id, &RoboIDs[7])) { /* L1, V1 */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert right motor */
 #if PL_CONFIG_HAS_QUADRATURE
-    (void)Q4CLeft_SwapPins(TRUE);
-    (void)Q4CRight_SwapPins(TRUE);
+    (void)Q4CLeft_SwapPins(FALSE);
+    (void)Q4CRight_SwapPins(FALSE);
 #endif
   }
 #endif

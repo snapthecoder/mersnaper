@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-24, 16:06, # CodeGen: 40
+**     Date/Time   : 2017-11-30, 13:52, # CodeGen: 41
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -25,7 +25,7 @@
 **            Period                                       : 0.01 ms
 **            Interrupt                                    : Enabled
 **              Interrupt                                  : INT_PIT1
-**              Interrupt priority                         : high priority
+**              Interrupt priority                         : 2
 **          Channel list                                   : 0
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes

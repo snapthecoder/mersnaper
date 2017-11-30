@@ -3040,7 +3040,7 @@ push-pull
       <Counter v="PIT_CVAL1" />
       <boolgroup name="Interrupt service/event" v="Enabled">
         <Interrupt v="INT_PIT1" />
-        <Interrupt_priority v="minimal priority" />
+        <Interrupt_priority v="high priority" />
       </boolgroup>
       <Interrupt_period v="0.01 ms" />
       <Same_period_in_modes v="yes" />
@@ -3063,7 +3063,7 @@ push-pull
             <Counter v="PIT_CVAL1" />
             <boolgroup name="Interrupt service/event" v="Enabled">
               <Interrupt v="INT_PIT1" />
-              <Interrupt_priority v="minimal priority" />
+              <Interrupt_priority v="high priority" />
             </boolgroup>
             <Interrupt_period v="0.01 ms" />
             <group name="Initialization">
@@ -3147,7 +3147,7 @@ push-pull
         <Period v="0.01 ms" />
         <boolgroup name="Interrupt" v="Enabled">
           <Interrupt v="INT_PIT1" />
-          <Interrupt_priority v="minimal priority" />
+          <Interrupt_priority v="high priority" />
         </boolgroup>
       </enumgroup>
       <list name="Channel list" v="0">

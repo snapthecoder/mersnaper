@@ -1,5 +1,5 @@
 /**
- * \file
+TACHO_Sample(); * \file
  * \brief This is the implementation of the PID Module
  * \author Erich Styger, erich.styger@hslu.ch
  */
@@ -454,7 +454,7 @@ void PID_Deinit(void) {
 }
 
 void PID_Init(void) {
-  /*! \todo determine your PID values */
+  /*! \todo determine your PID values*/
   config.speedLeftConfig.pFactor100 = 0;
   config.speedLeftConfig.iFactor100 = 0;
   config.speedLeftConfig.dFactor100 = 0;
