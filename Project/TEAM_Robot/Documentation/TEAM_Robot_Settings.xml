@@ -3042,7 +3042,7 @@ push-pull
         <Interrupt v="INT_PIT1" />
         <Interrupt_priority v="2" />
       </boolgroup>
-      <Interrupt_period v="0.01 ms" />
+      <Interrupt_period v="0.05 ms" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">
@@ -3065,7 +3065,7 @@ push-pull
               <Interrupt v="INT_PIT1" />
               <Interrupt_priority v="2" />
             </boolgroup>
-            <Interrupt_period v="0.01 ms" />
+            <Interrupt_period v="0.05 ms" />
             <group name="Initialization">
               <Enabled_in_init__code v="yes" />
               <group name="Event mask">
@@ -3144,7 +3144,7 @@ push-pull
       </enumgroup>
       <enumgroup name="Counter restart" v="On-match">
         <Period_device v="PIT_LDVAL1" />
-        <Period v="0.01 ms" />
+        <Period v="0.05 ms" />
         <boolgroup name="Interrupt" v="Enabled">
           <Interrupt v="INT_PIT1" />
           <Interrupt_priority v="2" />

@@ -47,7 +47,7 @@ by the component.
 <td class="regNotResetVal">0x00000001</td>
  <td>PIT_TFLG1 register, peripheral TimerIntLdd2.</td></tr>
 <tr><td>0x40037110</td><td>PIT_LDVAL1</td>
-<td class="regNotResetVal">0x00000257</td>
+<td class="regNotResetVal">0x00000BB7</td>
  <td>PIT_LDVAL1 register, peripheral TimerIntLdd2.</td></tr>
 <tr><td>0xE000E431</td><td>NVICIP49</td>
 <td class="regNotResetVal">0x00000020</td>
@@ -536,7 +536,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40037110</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000257</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000BB7</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>TSV</td><td>0x00</td><td>Timer Start Value</td>
@@ -575,7 +575,7 @@ registers of the peripheral(s) configured by the component.
 **          Interrupt service/event                        : Enabled
 **            Interrupt                                    : INT_PIT1
 **            Interrupt priority                           : 2
-**          Interrupt period                               : 0.01 ms
+**          Interrupt period                               : 0.05 ms
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : yes

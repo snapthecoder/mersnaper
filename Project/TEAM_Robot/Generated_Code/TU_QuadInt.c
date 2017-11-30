@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-30, 13:52, # CodeGen: 41
+**     Date/Time   : 2017-11-30, 15:37, # CodeGen: 43
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -22,7 +22,7 @@
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match
 **            Period device                                : PIT_LDVAL1
-**            Period                                       : 0.01 ms
+**            Period                                       : 0.05 ms
 **            Interrupt                                    : Enabled
 **              Interrupt                                  : INT_PIT1
 **              Interrupt priority                         : 2
@@ -175,8 +175,8 @@ LDD_TDeviceData* TU_QuadInt_Init(LDD_TUserData *UserDataPtr)
   PIT_TCTRL1 = 0x00U;                  /* Clear control register */
   /* PIT_TFLG1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,TIF=1 */
   PIT_TFLG1 = PIT_TFLG_TIF_MASK;       /* Clear timer flag register */
-  /* PIT_LDVAL1: TSV=0x0257 */
-  PIT_LDVAL1 = PIT_LDVAL_TSV(0x0257);  /* Set up load register */
+  /* PIT_LDVAL1: TSV=0x0BB7 */
+  PIT_LDVAL1 = PIT_LDVAL_TSV(0x0BB7);  /* Set up load register */
   /* NVICIP49: PRI49=0x20 */
   NVICIP49 = NVIC_IP_PRI49(0x20);
   /* NVICISER1: SETENA|=0x00020000 */
