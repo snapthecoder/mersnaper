@@ -103,7 +103,7 @@ void RTOS_Init(void) {
 	#endif
 	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 	//res= FRTOS1_xTaskCreate(MyAPPTask,"ReflTask",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
-
+	res= FRTOS1_xTaskCreate(DriveTask,"Drive",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
 	 if ( res !=pdPASS) { }
 
 }

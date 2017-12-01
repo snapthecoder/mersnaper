@@ -222,7 +222,11 @@ void APP_AdoptToHardware(void) {
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert left motor */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), TRUE); /* invert left motor */
   } else if (KIN1_UIDSame(&id, &RoboIDs[1])) { /* V2 L21 */
-    /* no change needed */
+	MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert right motor */
+	#if PL_CONFIG_HAS_QUADRATURE
+		(void)Q4CLeft_SwapPins(TRUE);
+		(void)Q4CRight_SwapPins(TRUE);
+	#endif
   } else if (KIN1_UIDSame(&id, &RoboIDs[2])) { /* V1 L4 */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* revert left motor */
 #if PL_CONFIG_HAS_QUADRATURE
@@ -310,15 +314,29 @@ void APP_Drive(void){
 	break;
 	case REF_NOF_LINES:        /* Sentinel */
 	break;
-	}}
-	else {
-		  PWMR_SetRatio16(65535);
-		  PWML_SetRatio16(65535);
+	}
 	}
 
-	if(DIST_GetDistance(2) < 20){
+	if((DIST_GetDistance(1) < 80) && (DIST_GetDistance(1) > 1)){
 		DRV_SetMode(DRV_MODE_STOP);
 	}
+	else {
+		DRV_SetMode(DRV_MODE_SPEED);
+	}
+
+	if((DIST_GetDistance(4) < 100) && (DIST_GetDistance(4) > 1)){
+		DRV_SetSpeed(0, 4000);
+	}
+	else{
+		DRV_SetSpeed(3000, 3000);
+	}
+
+	if((DIST_GetDistance(3) < 100) && (DIST_GetDistance(3) > 1)){
+			DRV_SetSpeed(4000, 0);
+		}
+		else{
+			DRV_SetSpeed(3000, 3000);
+		}
 
 	//FRTOS1_vTaskDelay(pdMS_TO_TICKS(50));
 }

@@ -930,7 +930,7 @@
     </GenFiles>
     <SignalListFile>Documentation\TEAM_Robot_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>275</ProjectModificationStamp>
+    <ProjectModificationStamp>274</ProjectModificationStamp>
   </Options>
   <CpuID_260>
     <Generated>true</Generated>
@@ -10135,7 +10135,7 @@
         <ExtraFile0>Documentation\doxygen\BitIoLdd17_component.txt</ExtraFile0>
       </InhrCompID_81>
     </InhrCompID_79>
-    <InhrCompID_914>
+    <InhrCompID_909>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -10161,8 +10161,8 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_914>
-    <InhrCompID_915>
+    </InhrCompID_909>
+    <InhrCompID_910>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -10189,7 +10189,7 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_915>
+    </InhrCompID_910>
   </ComponentID_77>
   <ComponentID_84>
     <Generated>true</Generated>
@@ -10548,7 +10548,7 @@
         <ExtraFile0>Documentation\doxygen\BitIoLdd19_component.txt</ExtraFile0>
       </InhrCompID_88>
     </InhrCompID_86>
-    <InhrCompID_916>
+    <InhrCompID_911>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -10574,8 +10574,8 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_916>
-    <InhrCompID_917>
+    </InhrCompID_911>
+    <InhrCompID_912>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -10602,7 +10602,7 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_917>
+    </InhrCompID_912>
   </ComponentID_84>
   <ComponentID_61>
     <Generated>true</Generated>
@@ -13256,7 +13256,7 @@
         <ExtraFile0>Generated_Code\Rx1config.h</ExtraFile0>
       </InhrCompID_274>
     </InhrCompID_272>
-    <InhrCompID_918>
+    <InhrCompID_913>
       <Generated>false</Generated>
       <GenCompName />
       <GenComponentVersion>??.???</GenComponentVersion>
@@ -13277,7 +13277,7 @@
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_918>
+    </InhrCompID_913>
     <InhrCompID_271>
       <Generated>false</Generated>
       <GenCompName />
