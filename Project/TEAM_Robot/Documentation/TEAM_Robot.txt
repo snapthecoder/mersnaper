@@ -1150,6 +1150,84 @@ Module "TmDt1"     (component GenericTimeDate)
    - TmDt1_DeInit -Deinitializes the driver.
    - TmDt1_Init -Initialization method
 
+Module "TofPwr"    (component BitIO)
+   - TofPwr_SetDir -Sets a pin direction (available only if the direction = _[input/output]_).
+   - TofPwr_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+   - TofPwr_PutVal -The specified output value is set. If the direction is [input], the component saves the value to a memory 
+                or a register and this value will be written to the pin after switching to the output mode (using 
+                [SetDir(TRUE)]; see <Safe mode> property for limitations). If the direction is [output], it writes the value to 
+                the pin. (Method is available only if the direction = _[output]_ or _[input/output]_).
+   - TofPwr_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - TofPwr_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "TofCE1"    (component BitIO)
+   - TofCE1_SetDir -Sets a pin direction (available only if the direction = _[input/output]_).
+   - TofCE1_SetInput -Sets a pin direction to input (available only if the direction = _[input/output]_).
+   - TofCE1_SetOutput -Sets a pin direction to output (available only if the direction = _[input/output]_).
+   - TofCE1_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+   - TofCE1_PutVal -The specified output value is set. If the direction is [input], the component saves the value to a memory 
+                or a register and this value will be written to the pin after switching to the output mode (using 
+                [SetDir(TRUE)]; see <Safe mode> property for limitations). If the direction is [output], it writes the value to 
+                the pin. (Method is available only if the direction = _[output]_ or _[input/output]_).
+   - TofCE1_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - TofCE1_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "TofCE2"    (component BitIO)
+   - TofCE2_SetDir -Sets a pin direction (available only if the direction = _[input/output]_).
+   - TofCE2_SetInput -Sets a pin direction to input (available only if the direction = _[input/output]_).
+   - TofCE2_SetOutput -Sets a pin direction to output (available only if the direction = _[input/output]_).
+   - TofCE2_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+   - TofCE2_PutVal -The specified output value is set. If the direction is [input], the component saves the value to a memory 
+                or a register and this value will be written to the pin after switching to the output mode (using 
+                [SetDir(TRUE)]; see <Safe mode> property for limitations). If the direction is [output], it writes the value to 
+                the pin. (Method is available only if the direction = _[output]_ or _[input/output]_).
+   - TofCE2_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - TofCE2_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "TofCE3"    (component BitIO)
+   - TofCE3_SetDir -Sets a pin direction (available only if the direction = _[input/output]_).
+   - TofCE3_SetInput -Sets a pin direction to input (available only if the direction = _[input/output]_).
+   - TofCE3_SetOutput -Sets a pin direction to output (available only if the direction = _[input/output]_).
+   - TofCE3_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+   - TofCE3_PutVal -The specified output value is set. If the direction is [input], the component saves the value to a memory 
+                or a register and this value will be written to the pin after switching to the output mode (using 
+                [SetDir(TRUE)]; see <Safe mode> property for limitations). If the direction is [output], it writes the value to 
+                the pin. (Method is available only if the direction = _[output]_ or _[input/output]_).
+   - TofCE3_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - TofCE3_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "TofCE4"    (component BitIO)
+   - TofCE4_SetDir -Sets a pin direction (available only if the direction = _[input/output]_).
+   - TofCE4_SetInput -Sets a pin direction to input (available only if the direction = _[input/output]_).
+   - TofCE4_SetOutput -Sets a pin direction to output (available only if the direction = _[input/output]_).
+   - TofCE4_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+   - TofCE4_PutVal -The specified output value is set. If the direction is [input], the component saves the value to a memory 
+                or a register and this value will be written to the pin after switching to the output mode (using 
+                [SetDir(TRUE)]; see <Safe mode> property for limitations). If the direction is [output], it writes the value to 
+                the pin. (Method is available only if the direction = _[output]_ or _[input/output]_).
+   - TofCE4_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - TofCE4_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
 Module "I2C1"      (component I2C_LDD)
    - I2C1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
                 interrupt priority, sets pin routing, sets timing, etc.   If the "Enable in init. code" is set to "yes" value 

@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P144M100SF5RM, Rev.2, Apr 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-24, 15:19, # CodeGen: 36
+**     Date/Time   : 2017-12-01, 14:25, # CodeGen: 45
 **     Abstract    :
 **
 **     Settings    :
@@ -386,6 +386,16 @@
 #include "USB0.h"
 #include "ADC_Bat.h"
 #include "TmDt1.h"
+#include "TofPwr.h"
+#include "BitIoLdd26.h"
+#include "TofCE1.h"
+#include "BitIoLdd14.h"
+#include "TofCE2.h"
+#include "BitIoLdd15.h"
+#include "TofCE3.h"
+#include "BitIoLdd24.h"
+#include "TofCE4.h"
+#include "BitIoLdd25.h"
 #include "I2C1.h"
 #include "GI2C1.h"
 #include "PE_Types.h"
@@ -2006,6 +2016,16 @@ void PE_low_level_init(void)
 #if TmDt1_INIT_IN_STARTUP
   (void)TmDt1_Init();
 #endif
+  /* ### BitIO_LDD "BitIoLdd26" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd26_Init(NULL);
+  /* ### BitIO_LDD "BitIoLdd14" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd14_Init(NULL);
+  /* ### BitIO_LDD "BitIoLdd15" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd15_Init(NULL);
+  /* ### BitIO_LDD "BitIoLdd24" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd24_Init(NULL);
+  /* ### BitIO_LDD "BitIoLdd25" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BitIoLdd25_Init(NULL);
   /* ### GenericI2C "GI2C1" init code ... */
   GI2C1_Init();
 }
