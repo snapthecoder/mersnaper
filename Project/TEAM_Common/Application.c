@@ -40,6 +40,7 @@
 	#include "DIRL.h"
 	#include "PWMR.h"
 	#include "PWML.h"
+	#include "Drive.h"
 #endif
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
@@ -109,7 +110,7 @@ void APP_EventHandler(EVNT_Handle event) {
      break;
   case EVNT_SW1_LPRESSED:
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
-	 dummyFlag=1;
+
 	#endif
 	 BtnMsg(1, "long pressed");
      break;
@@ -271,11 +272,13 @@ void APP_Drive(void){
 
 	switch (status){
 	case REF_LINE_NONE:     /* no line, sensors do not see a line */
-		  DIRL_PutVal(0);
+		  /*
+		DIRL_PutVal(0);
 		  DIRR_PutVal(0);
 		  PWMR_SetRatio16(50000);
 		  PWML_SetRatio16(50000);
-		  WAIT1_Waitms(200);
+		  WAIT1_Waitms(200);*/
+		DRV_SetMode(DRV_MODE_STOP);
 
 	break;
 	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
@@ -299,10 +302,11 @@ void APP_Drive(void){
 		  WAIT1_Waitms(200);
 	break;
 	case REF_LINE_FULL:     /* all sensors see a line */
-		  DIRL_PutVal(0);
+		  /*DIRL_PutVal(0);
 		  DIRR_PutVal(1);
 		  PWMR_SetRatio16(50000);
-		  PWML_SetRatio16(50000);
+		  PWML_SetRatio16(50000);*/
+		 DRV_SetMode(DRV_MODE_SPEED);
 	break;
 	case REF_NOF_LINES:        /* Sentinel */
 	break;
