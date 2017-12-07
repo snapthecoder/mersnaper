@@ -112,14 +112,14 @@ void APP_EventHandler(EVNT_Handle event) {
 	 dummyFlag++;
 	 }
 	 else
-		 LF_StartFollowing();
+
 	#endif
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
 
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
-	 dummyFlag=1;
+		 LF_StartFollowing();
 	#endif
 	 BtnMsg(1, "long pressed");
      break;
@@ -307,10 +307,7 @@ void APP_Drive(void){
 	case REF_LINE_FULL:     /* all sensors see a line */
 
 		 DRV_SetMode(DRV_MODE_SPEED);
-		  DIRL_PutVal(0);
-		  DIRR_PutVal(1);
-		  PWMR_SetRatio16(50000);
-		  PWML_SetRatio16(50000);
+		 DRV_SetSpeed(5000,5000);
 	break;
 	case REF_NOF_LINES:        /* Sentinel */
 	break;

@@ -101,17 +101,18 @@ static void StateMachine(void) {
 
     case STATE_TURN:
       lineKind = REF_GetLineKind();
-      if (lineKind==REF_LINE_FULL) {
+      if (lineKind==REF_LINE_NONE) {
         LF_currState = STATE_FINISHED;
-      } if (lineKind==REF_LINE_NONE) {
-        TURN_Turn(TURN_LEFT180, NULL);
-        DRV_SetMode(DRV_MODE_NONE); /* disable position mode */
-        LF_currState = STATE_FOLLOW_SEGMENT;
-      } else {
-        LF_currState = STATE_STOP;
-      }
-      break;
+        DRV_SetMode(DRV_MODE_NONE); /* disable position mode */}
+        else {
+                LF_currState = STATE_STOP;
+              }
 
+       if (lineKind==REF_LINE_FULL) {
+        TURN_Turn(TURN_LEFT180, NULL);
+        LF_currState = STATE_FOLLOW_SEGMENT;
+      }
+       break;
     case STATE_FINISHED:
       SHELL_SendString("Finished!\r\n");
       LF_currState = STATE_STOP;
@@ -123,7 +124,8 @@ static void StateMachine(void) {
 #endif
       SHELL_SendString("Stopped!\r\n");
       TURN_Turn(TURN_STOP, NULL);
-      LF_currState = STATE_IDLE;
+     // LF_currState = STATE_IDLE;
+      LF_currState =STATE_FOLLOW_SEGMENT;
       break;
   } /* switch */
 }
@@ -209,7 +211,7 @@ void LF_Deinit(void) {
 
 void LF_Init(void) {
   LF_currState = STATE_IDLE;
-  if (xTaskCreate(LineTask, "Line", 400/sizeof(StackType_t), NULL, tskIDLE_PRIORITY, &LFTaskHandle) != pdPASS) {
+  if (xTaskCreate(LineTask, "Line", 500/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+4, &LFTaskHandle) != pdPASS) {
     for(;;){} /* error */
   }
 }
