@@ -41,6 +41,7 @@
 	#include "PWMR.h"
 	#include "PWML.h"
 	#include "Drive.h"
+	#include "Turn.h"
 #endif
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
@@ -104,12 +105,19 @@ void APP_EventHandler(EVNT_Handle event) {
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+	 if (dummyFlag<2){
 	 REF_CalibrateStartStop();
+	 dummyFlag++;
+	 }
+	 else
+		 LF_StartStopFollowing();
+
+
 	#endif
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
-	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & 1
 
 	#endif
 	 BtnMsg(1, "long pressed");
@@ -278,34 +286,24 @@ void APP_Drive(void){
 		  PWMR_SetRatio16(50000);
 		  PWML_SetRatio16(50000);
 		  WAIT1_Waitms(200);*/
-		DRV_SetMode(DRV_MODE_STOP);
+	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
+	    TURN_Turn(TURN_STOP, NULL);
+	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
+	    TURN_Turn(TURN_STOP, NULL);
+	    TURN_TurnAngle((int16_t)170, NULL);
+	    TURN_Turn(TURN_STOP, NULL);
 
 	break;
 	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
-		  DIRL_PutVal(0);
-		  DIRR_PutVal(1);
-		  PWMR_SetRatio16(50000);
-		  PWML_SetRatio16(50000);
+
 	break;
 	case REF_LINE_LEFT:    /* left half of sensors see line */
-		  DIRL_PutVal(1);
-		  DIRR_PutVal(1);
-		  PWMR_SetRatio16(0);
-		  PWML_SetRatio16(0);
-		  WAIT1_Waitms(200);
+
 	break;
 	case REF_LINE_RIGHT:   /* right half of sensors see line */
-		  DIRL_PutVal(0);
-		  DIRR_PutVal(0);
-		  PWMR_SetRatio16(0);
-		  PWML_SetRatio16(0);
-		  WAIT1_Waitms(200);
+
 	break;
 	case REF_LINE_FULL:     /* all sensors see a line */
-		  /*DIRL_PutVal(0);
-		  DIRR_PutVal(1);
-		  PWMR_SetRatio16(50000);
-		  PWML_SetRatio16(50000);*/
 		 DRV_SetMode(DRV_MODE_SPEED);
 	break;
 	case REF_NOF_LINES:        /* Sentinel */

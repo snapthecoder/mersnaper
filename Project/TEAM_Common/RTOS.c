@@ -62,7 +62,7 @@
 void ReflectanceDriveTask (void *pvParameters){
 	  (void)pvParameters; /* not used */
 	  DRV_SetMode(DRV_MODE_STOP);
-	  DRV_SetSpeed(1000,1000);
+	  DRV_SetSpeed(5000,5000);
 	  for(;;) {
 		  APP_Drive();
 		  FRTOS1_vTaskDelay(pdMS_TO_TICKS(30));
@@ -100,11 +100,11 @@ void RTOS_Init(void) {
   /*! \todo Create tasks here */
 	 BaseType_t res ;
 	xTaskHandle taskHndl ;
-	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE & 0
 	res= FRTOS1_xTaskCreate(ReflectanceDriveTask,"Drive",200, NULL,tskIDLE_PRIORITY,&taskHndl);
 	#endif
 	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
-	//res= FRTOS1_xTaskCreate(MyAPPTask,"ReflTask",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
+
 
 	 if ( res !=pdPASS) { }
 
