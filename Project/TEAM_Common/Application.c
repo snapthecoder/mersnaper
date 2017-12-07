@@ -40,11 +40,9 @@
 	#include "DIRL.h"
 	#include "PWMR.h"
 	#include "PWML.h"
-<<<<<<< HEAD
 	#include "Drive.h"
 	#include "Turn.h"
-=======
->>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
+
 #endif
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
@@ -62,7 +60,6 @@
   #include "Reflectance.h"
 #endif
 #include "Sumo.h"
-
 #include "Drive.h"
 
 #if PL_CONFIG_HAS_EVENTS
@@ -107,34 +104,22 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_LED_HEARTBEAT:
 	  LED1_Neg();
 	  break;
-#if PL_CONFIG_NOF_KEYS>=1
+#if PL_CONFIG_NOF_KEYS>=1&0
   case EVNT_SW1_PRESSED:
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
-<<<<<<< HEAD
 	 if (dummyFlag<2){
 	 REF_CalibrateStartStop();
 	 dummyFlag++;
 	 }
 	 else
 		 LF_StartStopFollowing();
-
-
-=======
-	 //REF_CalibrateStartStop();
-	  DRV_SetMode(DRV_MODE_SPEED);
-	  DRV_SetSpeed(3000,3000);
->>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 	#endif
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
-<<<<<<< HEAD
-	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & 1
 
-=======
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
 	 dummyFlag=1;
->>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 	#endif
 	 BtnMsg(1, "long pressed");
      break;
@@ -142,6 +127,8 @@ void APP_EventHandler(EVNT_Handle event) {
      BtnMsg(1, "released");
      break;
 #endif
+
+
 #if PL_CONFIG_NOF_KEYS>=2
   case EVNT_SW2_PRESSED:
      BtnMsg(2, "pressed");
@@ -300,21 +287,12 @@ void APP_Drive(void){
 
 	switch (status){
 	case REF_LINE_NONE:     /* no line, sensors do not see a line */
-		  DIRL_PutVal(0);
-		  DIRR_PutVal(0);
-		  PWMR_SetRatio16(50000);
-		  PWML_SetRatio16(50000);
-<<<<<<< HEAD
-		  WAIT1_Waitms(200);*/
 	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
 	    TURN_Turn(TURN_STOP, NULL);
 	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
 	    TURN_Turn(TURN_STOP, NULL);
 	    TURN_TurnAngle((int16_t)170, NULL);
 	    TURN_Turn(TURN_STOP, NULL);
-=======
-		  WAIT1_Waitms(200);
->>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 
 	break;
 	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
@@ -327,45 +305,19 @@ void APP_Drive(void){
 
 	break;
 	case REF_LINE_FULL:     /* all sensors see a line */
-<<<<<<< HEAD
+
 		 DRV_SetMode(DRV_MODE_SPEED);
-=======
 		  DIRL_PutVal(0);
 		  DIRR_PutVal(1);
 		  PWMR_SetRatio16(50000);
 		  PWML_SetRatio16(50000);
->>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 	break;
 	case REF_NOF_LINES:        /* Sentinel */
 	break;
-	}
-	}
 
-	if((DIST_GetDistance(1) < 80) && (DIST_GetDistance(1) > 1)){
-		DRV_SetMode(DRV_MODE_STOP);
-	}
-	else {
-		DRV_SetMode(DRV_MODE_SPEED);
-	}
-
-	if((DIST_GetDistance(4) < 100) && (DIST_GetDistance(4) > 1)){
-		DRV_SetSpeed(0, 4000);
-	}
-	else{
-		DRV_SetSpeed(3000, 3000);
-	}
-
-	if((DIST_GetDistance(3) < 100) && (DIST_GetDistance(3) > 1)){
-			DRV_SetSpeed(4000, 0);
-		}
-		else{
-			DRV_SetSpeed(3000, 3000);
-		}
-
-	//FRTOS1_vTaskDelay(pdMS_TO_TICKS(50));
 }
-
-
+	}
+}
 
 
 void APP_Start(void) {
@@ -401,7 +353,9 @@ void APP_Start(void) {
 	#endif
 	WAIT1_WaitOSms(50);
 	EVNT_HandleEvent(APP_EventHandler, TRUE);
-	  }
+	}
+
+
 
 
 
