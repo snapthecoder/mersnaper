@@ -40,8 +40,11 @@
 	#include "DIRL.h"
 	#include "PWMR.h"
 	#include "PWML.h"
+<<<<<<< HEAD
 	#include "Drive.h"
 	#include "Turn.h"
+=======
+>>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 #endif
 #if PL_CONFIG_BOARD_IS_ROBO_V2
   #include "PORT_PDD.h"
@@ -59,6 +62,8 @@
   #include "Reflectance.h"
 #endif
 #include "Sumo.h"
+
+#include "Drive.h"
 
 #if PL_CONFIG_HAS_EVENTS
 
@@ -105,6 +110,7 @@ void APP_EventHandler(EVNT_Handle event) {
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+<<<<<<< HEAD
 	 if (dummyFlag<2){
 	 REF_CalibrateStartStop();
 	 dummyFlag++;
@@ -113,12 +119,22 @@ void APP_EventHandler(EVNT_Handle event) {
 		 LF_StartStopFollowing();
 
 
+=======
+	 //REF_CalibrateStartStop();
+	  DRV_SetMode(DRV_MODE_SPEED);
+	  DRV_SetSpeed(3000,3000);
+>>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 	#endif
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
+<<<<<<< HEAD
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & 1
 
+=======
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+	 dummyFlag=1;
+>>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 	#endif
 	 BtnMsg(1, "long pressed");
      break;
@@ -201,7 +217,7 @@ void APP_EventHandler(EVNT_Handle event) {
 #if PL_CONFIG_HAS_MOTOR /* currently only used for robots */
 static const KIN1_UID RoboIDs[] = {
   /* 0: L20, V2 */ {{0x00,0x03,0x00,0x00,0x67,0xCD,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
-  /* 1: L21, V2 */ {{0x00,0x05,0x00,0x00,0x4E,0x45,0xB7,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
+  /* 1: L21, V2 */ {{0x00,0x19,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x4E,0x45,0x27,0x99,0x10,0x02,0x00,0x25}},
   /* 2: L4, V1  */ {{0x00,0x10,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x4E,0x45,0x27,0x99,0x10,0x02,0x00,0x25}},
   /* 3: L23, V2 */ {{0x00,0x0A,0x00,0x00,0x67,0xCD,0xB8,0x21,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
   /* 4: L11, V2 */ {{0x00,0x19,0x00,0x00,0x67,0xCD,0xB9,0x11,0x4E,0x45,0x32,0x15,0x30,0x02,0x00,0x13}},
@@ -227,7 +243,11 @@ void APP_AdoptToHardware(void) {
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert left motor */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), TRUE); /* invert left motor */
   } else if (KIN1_UIDSame(&id, &RoboIDs[1])) { /* V2 L21 */
-    /* no change needed */
+	MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* invert right motor */
+	#if PL_CONFIG_HAS_QUADRATURE
+		(void)Q4CLeft_SwapPins(TRUE);
+		(void)Q4CRight_SwapPins(TRUE);
+	#endif
   } else if (KIN1_UIDSame(&id, &RoboIDs[2])) { /* V1 L4 */
     MOT_Invert(MOT_GetMotorHandle(MOT_MOTOR_LEFT), TRUE); /* revert left motor */
 #if PL_CONFIG_HAS_QUADRATURE
@@ -280,11 +300,11 @@ void APP_Drive(void){
 
 	switch (status){
 	case REF_LINE_NONE:     /* no line, sensors do not see a line */
-		  /*
-		DIRL_PutVal(0);
+		  DIRL_PutVal(0);
 		  DIRR_PutVal(0);
 		  PWMR_SetRatio16(50000);
 		  PWML_SetRatio16(50000);
+<<<<<<< HEAD
 		  WAIT1_Waitms(200);*/
 	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
 	    TURN_Turn(TURN_STOP, NULL);
@@ -292,6 +312,9 @@ void APP_Drive(void){
 	    TURN_Turn(TURN_STOP, NULL);
 	    TURN_TurnAngle((int16_t)170, NULL);
 	    TURN_Turn(TURN_STOP, NULL);
+=======
+		  WAIT1_Waitms(200);
+>>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 
 	break;
 	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
@@ -304,15 +327,42 @@ void APP_Drive(void){
 
 	break;
 	case REF_LINE_FULL:     /* all sensors see a line */
+<<<<<<< HEAD
 		 DRV_SetMode(DRV_MODE_SPEED);
+=======
+		  DIRL_PutVal(0);
+		  DIRR_PutVal(1);
+		  PWMR_SetRatio16(50000);
+		  PWML_SetRatio16(50000);
+>>>>>>> a8901b945c1d8929a86b21e0fe52bf6d5bcf5b2e
 	break;
 	case REF_NOF_LINES:        /* Sentinel */
 	break;
-	}}
-	else {
-		  PWMR_SetRatio16(65535);
-		  PWML_SetRatio16(65535);}
+	}
+	}
 
+	if((DIST_GetDistance(1) < 80) && (DIST_GetDistance(1) > 1)){
+		DRV_SetMode(DRV_MODE_STOP);
+	}
+	else {
+		DRV_SetMode(DRV_MODE_SPEED);
+	}
+
+	if((DIST_GetDistance(4) < 100) && (DIST_GetDistance(4) > 1)){
+		DRV_SetSpeed(0, 4000);
+	}
+	else{
+		DRV_SetSpeed(3000, 3000);
+	}
+
+	if((DIST_GetDistance(3) < 100) && (DIST_GetDistance(3) > 1)){
+			DRV_SetSpeed(4000, 0);
+		}
+		else{
+			DRV_SetSpeed(3000, 3000);
+		}
+
+	//FRTOS1_vTaskDelay(pdMS_TO_TICKS(50));
 }
 
 

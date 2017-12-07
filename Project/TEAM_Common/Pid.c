@@ -456,10 +456,10 @@ void PID_Deinit(void) {
 
 void PID_Init(void) {
   /*! \todo determine your PID values*/
-  config.speedLeftConfig.pFactor100 = 2000;
+  config.speedLeftConfig.pFactor100 = 1000;
   config.speedLeftConfig.iFactor100 = 100;
   config.speedLeftConfig.dFactor100 = 0;
-  config.speedLeftConfig.iAntiWindup = 50000;
+  config.speedLeftConfig.iAntiWindup = 100;
   config.speedLeftConfig.maxSpeedPercent = 0;
   config.speedLeftConfig.lastError = 0;
   config.speedLeftConfig.integral = 0;

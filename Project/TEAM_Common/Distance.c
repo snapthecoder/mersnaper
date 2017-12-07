@@ -11,6 +11,7 @@
 #include "CLS1.h"
 #include "WAIT1.h"
 #include "UTIL1.h"
+#include "FRTOS1.h"
 #if PL_CONFIG_HAS_MOTOR
   #include "Motor.h"
 #endif
@@ -675,7 +676,7 @@ void DIST_Deinit(void) {
 
 void DIST_Init(void) {
 #if PL_HAS_TOF_SENSOR
-  if (xTaskCreate(TofTask, "ToF", 1000/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+2, NULL) != pdPASS) {
+  if (xTaskCreate(TofTask, "ToF", 1000/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
     for(;;){} /* error */
   }
 #endif

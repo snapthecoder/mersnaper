@@ -6,7 +6,7 @@
 **     Version     : Component 01.014, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-24, 15:19, # CodeGen: 36
+**     Date/Time   : 2017-12-01, 14:25, # CodeGen: 45
 **     Abstract    :
 **
 **     Settings    :
@@ -137,6 +137,16 @@
 #include "USB0.h"
 #include "ADC_Bat.h"
 #include "TmDt1.h"
+#include "TofPwr.h"
+#include "BitIoLdd26.h"
+#include "TofCE1.h"
+#include "BitIoLdd14.h"
+#include "TofCE2.h"
+#include "BitIoLdd15.h"
+#include "TofCE3.h"
+#include "BitIoLdd24.h"
+#include "TofCE4.h"
+#include "BitIoLdd25.h"
 #include "I2C1.h"
 #include "GI2C1.h"
 
