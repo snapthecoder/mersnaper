@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-11-03, 14:14, # CodeGen: 29
+**     Date/Time   : 2017-12-07, 14:47, # CodeGen: 48
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -19,9 +19,9 @@
 **          Counter width                                  : 16 bits
 **          Value type                                     : Optimal
 **          Input clock source                             : Internal
-**            Counter frequency                            : 1.875 MHz
+**            Counter frequency                            : 30 MHz
 **          Counter restart                                : On-overrun
-**            Overrun period                               : 34.952533 ms
+**            Overrun period                               : 2.184533 ms
 **            Interrupt                                    : Disabled
 **          Channel list                                   : 0
 **          Initialization                                 : 
@@ -164,8 +164,8 @@ LDD_TDeviceData* RefCnt_Init(LDD_TUserData *UserDataPtr)
   FTM2_C1SC = 0x00U;                   /* Clear channel status and control register */
   /* FTM2_MOD: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,MOD=0xFFFF */
   FTM2_MOD = FTM_MOD_MOD(0xFFFF);      /* Set up modulo register */
-  /* FTM2_SC: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,TOF=0,TOIE=0,CPWMS=0,CLKS=1,PS=5 */
-  FTM2_SC = (FTM_SC_CLKS(0x01) | FTM_SC_PS(0x05)); /* Set up status and control register */
+  /* FTM2_SC: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,TOF=0,TOIE=0,CPWMS=0,CLKS=1,PS=1 */
+  FTM2_SC = (FTM_SC_CLKS(0x01) | FTM_SC_PS(0x01)); /* Set up status and control register */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_RefCnt_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv); /* Return pointer to the device data structure */

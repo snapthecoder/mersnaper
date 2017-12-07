@@ -61,10 +61,6 @@
 void DriveTask (void *pvParameters){
 	  (void)pvParameters; /* not used */
 
-	  DRV_SetMode(DRV_MODE_STOP);
-	  DRV_SetSpeed(5000,5000);
-
-
 	  for(;;) {
 		  APP_Drive();
 		  FRTOS1_vTaskDelay(pdMS_TO_TICKS(30));

@@ -7,7 +7,7 @@
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2017-10-26, 14:14, # CodeGen: 26
+**     Date/Time   : 2017-12-07, 14:47, # CodeGen: 48
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -19,9 +19,9 @@
 **          Counter width                                  : 16 bits
 **          Value type                                     : Optimal
 **          Input clock source                             : Internal
-**            Counter frequency                            : 1.875 MHz
+**            Counter frequency                            : 30 MHz
 **          Counter restart                                : On-overrun
-**            Overrun period                               : 34.952533 ms
+**            Overrun period                               : 2.184533 ms
 **            Interrupt                                    : Disabled
 **          Channel list                                   : 0
 **          Initialization                                 : 
@@ -119,8 +119,8 @@ extern "C" {
 #define __BWUserType_RefCnt_TValueType
   typedef uint32_t RefCnt_TValueType ; /* Type for data parameters of methods */
 #endif
-#define RefCnt_CNT_INP_FREQ_U_0 0x001C9C38UL /* Counter input frequency in Hz */
-#define RefCnt_CNT_INP_FREQ_R_0 1875001.1718757325F /* Counter input frequency in Hz */
+#define RefCnt_CNT_INP_FREQ_U_0 0x01C9C380UL /* Counter input frequency in Hz */
+#define RefCnt_CNT_INP_FREQ_R_0 30000300.003000032F /* Counter input frequency in Hz */
 #define RefCnt_CNT_INP_FREQ_COUNT 0U   /* Count of predefined counter input frequencies */
 #define RefCnt_PERIOD_TICKS 0x00010000UL /* Initialization value of period in 'counter ticks' */
 #define RefCnt_NUMBER_OF_CHANNELS 0x00U /* Count of predefined channels */

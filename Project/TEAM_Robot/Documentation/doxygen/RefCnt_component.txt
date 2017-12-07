@@ -21,7 +21,7 @@ by the component.
 <td class="regResetVal">0x00000004</td>
  <td>FTM2_MODE register, peripheral RefCnt.</td></tr>
 <tr><td>0x400B8000</td><td>FTM2_SC</td>
-<td class="regNotResetVal">0x0000000D</td>
+<td class="regNotResetVal">0x00000009</td>
  <td>FTM2_SC register, peripheral RefCnt.</td></tr>
 <tr><td>0x400B804C</td><td>FTM2_CNTIN</td>
 <td class="regResetVal">0x00000000</td>
@@ -204,14 +204,14 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400B8000</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0000000D</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000009</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>7</td><td>TOF</td><td>0x00</td><td>Timer Overflow Flag</td>
 <tr><td>6</td><td>TOIE</td><td>0x00</td><td>Timer Overflow Interrupt Enable</td>
 <tr><td>5</td><td>CPWMS</td><td>0x00</td><td>Center-Aligned PWM Select</td>
 <tr><td>3 - 4</td><td>CLKS</td><td>0x00</td><td>Clock Source Selection</td>
-<tr><td>0 - 2</td><td>PS</td><td>0x04</td><td>Prescale Factor Selection</td>
+<tr><td>0 - 2</td><td>PS</td><td>0x00</td><td>Prescale Factor Selection</td>
 </tr></table>
 <div class="reghdr1">FTM2_CNTIN</div>
 <div class="regdiag">
@@ -483,9 +483,9 @@ registers of the peripheral(s) configured by the component.
 **          Counter width                                  : 16 bits
 **          Value type                                     : Optimal
 **          Input clock source                             : Internal
-**            Counter frequency                            : 1.875 MHz
+**            Counter frequency                            : 30 MHz
 **          Counter restart                                : On-overrun
-**            Overrun period                               : 34.952533 ms
+**            Overrun period                               : 2.184533 ms
 **            Interrupt                                    : Disabled
 **          Channel list                                   : 0
 **          Initialization                                 : 

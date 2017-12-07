@@ -1846,10 +1846,10 @@ push-pull
       <Counter_width v="16 bits" />
       <Value_type v="Optimal" />
       <enumgroup name="Input clock source" v="Internal">
-        <Counter_frequency v="1.875 MHz" />
+        <Counter_frequency v="30 MHz" />
       </enumgroup>
       <enumgroup name="Counter restart" v="On-overrun">
-        <Overrun_period v="34.952533 ms" />
+        <Overrun_period v="2.184533 ms" />
         <boolgroup name="Interrupt" v="Disabled" />
       </enumgroup>
       <list name="Channel list" v="0">

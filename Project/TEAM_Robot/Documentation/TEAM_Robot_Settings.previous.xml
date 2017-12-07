@@ -4421,32 +4421,23 @@ Autoselect
     </Events>
   </Bean>
   <Bean name="TofPwr" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TofPwr" />
       <Pin_for_I_O v="PTB18/CAN0_TX/FTM2_CH0/I2S0_TX_BCLK/FB_AD15/FTM2_QD_PHA" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd26" />
           <Pin_for_I_O v="PTB18/CAN0_TX/FTM2_CH0/I2S0_TX_BCLK/FB_AD15/FTM2_QD_PHA" />
-          <Pull_resistor sel_value="no pull resistor">
-            
-autoselected pull
-
-            <EmptySection_DummyValue />
-          </Pull_resistor>
-          <Open_drain v="push-pull" />
           <Direction v="Input/Output" />
           <group name="Initialization">
             <Init__direction v="Output" />
             <Init__value v="0" />
             <Auto_initialization v="yes" />
           </group>
-          <Safe_mode v="yes" />
-          <Optimization_for v="speed" />
-          <Implement_using v="EGPIO" />
+          <Safe_mode v="no" />
         </Properties>
         <Methods>
           <Init v="generate code" />
@@ -4493,32 +4484,23 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="TofCE1" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TofCE1" />
       <Pin_for_I_O v="CMP2_IN0/PTA12/CAN0_TX/FTM1_CH0/I2C2_SCL/I2S0_TXD0/FTM1_QD_PHA" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd14" />
           <Pin_for_I_O v="CMP2_IN0/PTA12/CAN0_TX/FTM1_CH0/I2C2_SCL/I2S0_TXD0/FTM1_QD_PHA" />
-          <Pull_resistor sel_value="no pull resistor">
-            
-autoselected pull
-
-            <EmptySection_DummyValue />
-          </Pull_resistor>
-          <Open_drain v="push-pull" />
           <Direction v="Input/Output" />
           <group name="Initialization">
-            <Init__direction v="Output" />
+            <Init__direction v="Input" />
             <Init__value v="0" />
             <Auto_initialization v="yes" />
           </group>
-          <Safe_mode v="yes" />
-          <Optimization_for v="speed" />
-          <Implement_using v="EGPIO" />
+          <Safe_mode v="no" />
         </Properties>
         <Methods>
           <Init v="generate code" />
@@ -4565,32 +4547,23 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="TofCE2" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TofCE2" />
       <Pin_for_I_O v="ADC1_SE17/PTA17/SPI0_SIN/UART0_RTS_b/I2S0_MCLK" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd15" />
           <Pin_for_I_O v="ADC1_SE17/PTA17/SPI0_SIN/UART0_RTS_b/I2S0_MCLK" />
-          <Pull_resistor sel_value="no pull resistor">
-            
-autoselected pull
-
-            <EmptySection_DummyValue />
-          </Pull_resistor>
-          <Open_drain v="push-pull" />
           <Direction v="Input/Output" />
           <group name="Initialization">
-            <Init__direction v="Output" />
+            <Init__direction v="Input" />
             <Init__value v="0" />
             <Auto_initialization v="yes" />
           </group>
-          <Safe_mode v="yes" />
-          <Optimization_for v="speed" />
-          <Implement_using v="EGPIO" />
+          <Safe_mode v="no" />
         </Properties>
         <Methods>
           <Init v="generate code" />
@@ -4637,32 +4610,23 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="TofCE3" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TofCE3" />
       <Pin_for_I_O v="PTA16/SPI0_SOUT/UART0_CTS_b/UART0_COL_b/I2S0_RX_FS/I2S0_RXD1" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd24" />
           <Pin_for_I_O v="PTA16/SPI0_SOUT/UART0_CTS_b/UART0_COL_b/I2S0_RX_FS/I2S0_RXD1" />
-          <Pull_resistor sel_value="no pull resistor">
-            
-autoselected pull
-
-            <EmptySection_DummyValue />
-          </Pull_resistor>
-          <Open_drain v="push-pull" />
           <Direction v="Input/Output" />
           <group name="Initialization">
-            <Init__direction v="Output" />
+            <Init__direction v="Input" />
             <Init__value v="0" />
             <Auto_initialization v="yes" />
           </group>
-          <Safe_mode v="yes" />
-          <Optimization_for v="speed" />
-          <Implement_using v="EGPIO" />
+          <Safe_mode v="no" />
         </Properties>
         <Methods>
           <Init v="generate code" />
@@ -4709,32 +4673,23 @@ autoselected pull
     </Events>
   </Bean>
   <Bean name="TofCE4" type="BitIO">
-    <Enabled v="N" />
+    <Enabled v="Y" />
     <Properties>
       <Component_name v="TofCE4" />
       <Pin_for_I_O v="PTA15/SPI0_SCK/UART0_RX/I2S0_RXD0" />
       <inhrbean type="BitIO_LDD">
-        <Enabled v="N" />
+        <Enabled v="Y" />
         <Template v="BitIO_LDD" />
         <Properties>
           <Component_name v="BitIoLdd25" />
           <Pin_for_I_O v="PTA15/SPI0_SCK/UART0_RX/I2S0_RXD0" />
-          <Pull_resistor sel_value="no pull resistor">
-            
-autoselected pull
-
-            <EmptySection_DummyValue />
-          </Pull_resistor>
-          <Open_drain v="push-pull" />
           <Direction v="Input/Output" />
           <group name="Initialization">
-            <Init__direction v="Output" />
+            <Init__direction v="Input" />
             <Init__value v="0" />
             <Auto_initialization v="yes" />
           </group>
-          <Safe_mode v="yes" />
-          <Optimization_for v="speed" />
-          <Implement_using v="EGPIO" />
+          <Safe_mode v="no" />
         </Properties>
         <Methods>
           <Init v="generate code" />

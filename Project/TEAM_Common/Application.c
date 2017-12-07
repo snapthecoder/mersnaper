@@ -104,7 +104,7 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_LED_HEARTBEAT:
 	  LED1_Neg();
 	  break;
-#if PL_CONFIG_NOF_KEYS>=1&0
+#if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
 	 if (dummyFlag<2){
@@ -112,7 +112,7 @@ void APP_EventHandler(EVNT_Handle event) {
 	 dummyFlag++;
 	 }
 	 else
-		 LF_StartStopFollowing();
+		 LF_StartFollowing();
 	#endif
      BtnMsg(1, "pressed");
      break;
