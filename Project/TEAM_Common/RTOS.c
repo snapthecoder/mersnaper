@@ -43,6 +43,7 @@
 #endif
 #if PL_CONFIG_HAS_LINE_FOLLOW
   #include "LineFollow.h"
+#define LINEFOLOWING 1
 #endif
 #if PL_CONFIG_HAS_LCD_MENU
   #include "LCD.h"
@@ -58,11 +59,13 @@
 #define normalTaskStackSize (200/sizeof(StackType_t));
 
 
+
 void DriveTask (void *pvParameters){
 	  (void)pvParameters; /* not used */
 
 	  for(;;) {
 		  APP_Drive();
+		  //doDriving();
 		  FRTOS1_vTaskDelay(pdMS_TO_TICKS(30));
 	  }
 

@@ -118,7 +118,7 @@ void APP_EventHandler(EVNT_Handle event) {
      break;
   case EVNT_SW1_LPRESSED:
 
-	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE & 1
 		 LF_StartFollowing();
 	#endif
 	 BtnMsg(1, "long pressed");

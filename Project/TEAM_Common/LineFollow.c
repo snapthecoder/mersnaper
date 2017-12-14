@@ -104,31 +104,70 @@ static void StateMachine(void) {
       if (lineKind==REF_LINE_NONE) {
         LF_currState = STATE_FINISHED;
         DRV_SetMode(DRV_MODE_NONE); /* disable position mode */}
-        else {
-                LF_currState = STATE_STOP;
-              }
-
+       else {
+    	LF_currState = STATE_STOP;
+       }
        if (lineKind==REF_LINE_FULL) {
         TURN_Turn(TURN_LEFT180, NULL);
-        LF_currState = STATE_FOLLOW_SEGMENT;
+        FRTOS1_vTaskDelay(50);
+       //LF_currState = STATE_FOLLOW_SEGMENT;
+        LF_currState = STATE_STOP;
       }
-       break;
+      break;
     case STATE_FINISHED:
       SHELL_SendString("Finished!\r\n");
       LF_currState = STATE_STOP;
       break;
-
     case STATE_STOP:
 #if 0
       RNETA_SendSignal('C'); /*! \todo */
 #endif
       SHELL_SendString("Stopped!\r\n");
       TURN_Turn(TURN_STOP, NULL);
-     // LF_currState = STATE_IDLE;
-      LF_currState =STATE_FOLLOW_SEGMENT;
+     LF_currState = STATE_IDLE;
+     // LF_currState =STATE_FOLLOW_SEGMENT;
       break;
   } /* switch */
 }
+
+
+static void stateMachineZweiPunktNull(void) {
+		REF_LineKind status;
+		status = REF_GetLineKind();
+		if(REF_IsReady()){
+
+		switch (status){
+		case REF_LINE_NONE:     /* no line, sensors do not see a line */
+			TURN_Turn(TURN_STOP, NULL);
+			DRV_SetMode(DRV_MODE_NONE);
+			FRTOS1_vTaskDelay(50);
+			LF_StopFollowing();
+
+
+
+		break;
+		case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
+			FollowSegment();
+
+		break;
+		case REF_LINE_LEFT:    /* left half of sensors see line */
+			FollowSegment();
+		break;
+		case REF_LINE_RIGHT:   /* right half of sensors see line */
+			FollowSegment();
+		break;
+		case REF_LINE_FULL:     /* all sensors see a line */
+		    TURN_TurnAngle((int16_t)180, NULL);
+		    TURN_Turn(TURN_STOP, NULL);
+		    DRV_SetMode(DRV_MODE_NONE);
+		    FRTOS1_vTaskDelay(50);
+
+		break;
+
+	}
+		}
+	}
+
 
 bool LF_IsFollowing(void) {
   return LF_currState!=STATE_IDLE;
@@ -151,7 +190,12 @@ static void LineTask (void *pvParameters) {
     if (notifcationValue&LF_STOP_FOLLOWING) {
       LF_currState = STATE_STOP;
     }
+
+#if 0
     StateMachine();
+#else
+    stateMachineZweiPunktNull();
+#endif
     FRTOS1_vTaskDelay(5/portTICK_PERIOD_MS);
   }
 }
@@ -211,7 +255,7 @@ void LF_Deinit(void) {
 
 void LF_Init(void) {
   LF_currState = STATE_IDLE;
-  if (xTaskCreate(LineTask, "Line", 500/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+4, &LFTaskHandle) != pdPASS) {
+  if (xTaskCreate(LineTask, "Line", 500/sizeof(StackType_t), NULL, tskIDLE_PRIORITY, &LFTaskHandle) != pdPASS) {
     for(;;){} /* error */
   }
 }
