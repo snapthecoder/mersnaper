@@ -380,7 +380,7 @@ static uint8_t ParsePidParameter(PID_Config *config, const unsigned char *cmd, b
   }
   return res;
 }
-#if 0
+#if 1
 static uint8_t PID_LoadSettingsFromFlash(void) {
   PIDConfig_t *ptr;
 
@@ -457,7 +457,7 @@ void PID_Deinit(void) {
 void PID_Init(void) {
   /*! \todo determine your PID values*/
   config.speedLeftConfig.pFactor100 = 1000;
-  config.speedLeftConfig.iFactor100 = 100;
+  config.speedLeftConfig.iFactor100 = 300;
   config.speedLeftConfig.dFactor100 = 0;
   config.speedLeftConfig.iAntiWindup = 100;
   config.speedLeftConfig.maxSpeedPercent = 0;
@@ -475,7 +475,7 @@ void PID_Init(void) {
   config.lineFwConfig.iFactor100 = 10;
   config.lineFwConfig.dFactor100 = 1000;
   config.lineFwConfig.iAntiWindup = 200;
-  config.lineFwConfig.maxSpeedPercent = 80;
+  config.lineFwConfig.maxSpeedPercent = 60;
   config.lineFwConfig.lastError = 0;
   config.lineFwConfig.integral = 0;
 

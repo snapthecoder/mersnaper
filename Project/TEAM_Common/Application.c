@@ -62,7 +62,11 @@
 #include "Sumo.h"
 #include "Drive.h"
 
+bool letsstart = 0;
+bool has_waited = 0;
+
 #if PL_CONFIG_HAS_EVENTS
+
 
 static void BtnMsg(int btn, const char *msg) {
 #if PL_CONFIG_HAS_SHELL
@@ -85,7 +89,6 @@ static void BtnMsg(int btn, const char *msg) {
 #endif
 }
 
-int dummyFlag=0;
 void APP_EventHandler(EVNT_Handle event) {
   /*! \todo handle events */
   switch(event) {
@@ -107,18 +110,16 @@ void APP_EventHandler(EVNT_Handle event) {
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
 	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE
-	 if (dummyFlag<2){
-	 REF_CalibrateStartStop();
-	 dummyFlag++;
-	 }
-	 else
+	  letsstart = 1;
+
 
 	#endif
      BtnMsg(1, "pressed");
      break;
   case EVNT_SW1_LPRESSED:
-
-	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE & 1
+	  //calib start or stop
+	  //REF_CalibrateStartStop();
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE & PL_LOCAL_CONFIG_HAS_LINE_FOLLOW
 		 LF_StartFollowing();
 	#endif
 	 BtnMsg(1, "long pressed");
@@ -280,39 +281,104 @@ void APP_AdoptToHardware(void) {
   PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 17, PORT_PDD_PULL_ENABLE);
 #endif
 }
+
 DriveState status = REF_LINE_NONE;
+int front;
+int back;
+int right;
+int left;
+
+
 void APP_Drive(void){
+
 	status = REF_GetLineKind();
-	if(REF_IsReady()){
 
-	switch (status){
-	case REF_LINE_NONE:     /* no line, sensors do not see a line */
-	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
-	    TURN_Turn(TURN_STOP, NULL);
-	    TURN_Turn(TURN_STEP_LINE_BW, NULL);
-	    TURN_Turn(TURN_STOP, NULL);
-	    TURN_TurnAngle((int16_t)170, NULL);
-	    TURN_Turn(TURN_STOP, NULL);
+	front = DIST_GetDistance(1);
+	back = DIST_GetDistance(2);
+	right = DIST_GetDistance(8);
+	left = DIST_GetDistance(4);
 
-	break;
-	case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
+	if(!has_waited){
+		FRTOS1_vTaskDelay(5000/portTICK_PERIOD_MS); // 8000 for 5 sec
+		has_waited = 1;
+	}
+	if(letsstart){
 
-	break;
-	case REF_LINE_LEFT:    /* left half of sensors see line */
+		switch (status){
 
-	break;
-	case REF_LINE_RIGHT:   /* right half of sensors see line */
+		case REF_LINE_NONE:     /* no line, sensors do not see a line */
 
-	break;
-	case REF_LINE_FULL:     /* all sensors see a line */
+			DRV_SetMode(DRV_MODE_STOP);
+			DRV_SetMode(DRV_MODE_SPEED);
+			DRV_SetSpeed(-8000,-8000);
+			//DRV_SetPos(Q4CLeft_GetPos()-700,Q4CRight_GetPos()-700);
+			FRTOS1_vTaskDelay(300);
+			DRV_SetMode(DRV_MODE_STOP);
+			TURN_Turn(TURN_LEFT180, NULL);
 
-		 DRV_SetMode(DRV_MODE_SPEED);
-		 DRV_SetSpeed(5000,5000);
-	break;
-	case REF_NOF_LINES:        /* Sentinel */
-	break;
+		break;
+		case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
+			DRV_SetMode(DRV_MODE_STOP);
+			DRV_SetMode(DRV_MODE_SPEED);
+			DRV_SetSpeed(-8000,-8000);
+			//DRV_SetPos(Q4CLeft_GetPos()-700,Q4CRight_GetPos()-700);
+			FRTOS1_vTaskDelay(300);
+			DRV_SetMode(DRV_MODE_STOP);
+			TURN_Turn(TURN_LEFT90, NULL);
 
-}
+		break;
+		case REF_LINE_LEFT:    /* left half of sensors see line */
+
+			DRV_SetMode(DRV_MODE_STOP);
+			DRV_SetMode(DRV_MODE_SPEED);
+			DRV_SetSpeed(-8000,-8000);
+			//DRV_SetPos(Q4CLeft_GetPos()-700,Q4CRight_GetPos()-700);
+			FRTOS1_vTaskDelay(200);
+			//DRV_SetMode(DRV_MODE_STOP);
+			TURN_Turn(TURN_LEFT90, NULL);
+
+		break;
+		case REF_LINE_RIGHT:   /* right half of sensors see line */
+
+			DRV_SetMode(DRV_MODE_STOP);
+			DRV_SetMode(DRV_MODE_SPEED);
+			DRV_SetSpeed(-8000,-8000);
+			//DRV_SetPos(Q4CLeft_GetPos()-700,Q4CRight_GetPos()-700);
+			FRTOS1_vTaskDelay(200);
+			DRV_SetMode(DRV_MODE_STOP);
+			TURN_Turn(TURN_RIGHT90, NULL);
+
+		break;
+		case REF_LINE_FULL:     /* all sensors see a line */
+			if((right<200)&(right>0)){
+				TURN_Turn(TURN_RIGHT45, NULL);
+				FRTOS1_vTaskDelay(50);
+			}
+			else if((left<200)&(left>0)){
+				TURN_Turn(TURN_LEFT45, NULL);
+				FRTOS1_vTaskDelay(50);
+			}
+
+			else if((front<200)&(front>0)){
+				DRV_SetMode(DRV_MODE_SPEED);
+				DRV_SetSpeed(8000,8000);
+			}
+			else if((back<100)&(back>0)){
+				DRV_SetMode(DRV_MODE_SPEED);
+				DRV_SetSpeed(-8000,-8000);
+			}
+			else{
+				DRV_SetMode(DRV_MODE_SPEED);
+				DRV_SetSpeed(7000,7000);
+			}
+		break;
+		case REF_NOF_LINES:        /* Sentinel */
+		break;
+
+		}
+	}
+	else{
+		DRV_SetMode(DRV_MODE_STOP);
 	}
 }
 

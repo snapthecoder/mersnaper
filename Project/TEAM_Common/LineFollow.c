@@ -138,17 +138,15 @@ static void stateMachineZweiPunktNull(void) {
 
 		switch (status){
 		case REF_LINE_NONE:     /* no line, sensors do not see a line */
-			TURN_Turn(TURN_STOP, NULL);
+			TURN_TurnAngle((int16_t)-20, NULL);
+			FRTOS1_vTaskDelay(50);
+			TURN_TurnAngle((int16_t)40, NULL);
 			DRV_SetMode(DRV_MODE_NONE);
 			FRTOS1_vTaskDelay(50);
-			LF_StopFollowing();
-
-
-
+			//LF_StopFollowing();
 		break;
 		case REF_LINE_STRAIGHT: /* forward line |, sensors see a line underneath */
 			FollowSegment();
-
 		break;
 		case REF_LINE_LEFT:    /* left half of sensors see line */
 			FollowSegment();
@@ -255,7 +253,7 @@ void LF_Deinit(void) {
 
 void LF_Init(void) {
   LF_currState = STATE_IDLE;
-  if (xTaskCreate(LineTask, "Line", 500/sizeof(StackType_t), NULL, tskIDLE_PRIORITY, &LFTaskHandle) != pdPASS) {
+  if (xTaskCreate(LineTask, "Line", 500/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+1, &LFTaskHandle) != pdPASS) {
     for(;;){} /* error */
   }
 }

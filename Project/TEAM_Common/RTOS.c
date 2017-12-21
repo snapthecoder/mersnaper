@@ -63,9 +63,12 @@
 void DriveTask (void *pvParameters){
 	  (void)pvParameters; /* not used */
 
+	  //Q4CLeft_SetPos(10000);
+	  //Q4CRight_SetPos(10000);
+
 	  for(;;) {
 		  APP_Drive();
-		  //doDriving();
+
 		  FRTOS1_vTaskDelay(pdMS_TO_TICKS(30));
 	  }
 
@@ -101,10 +104,10 @@ void RTOS_Init(void) {
   /*! \todo Create tasks here */
 	 BaseType_t res ;
 	xTaskHandle taskHndl ;
-	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE & 0
-	res= FRTOS1_xTaskCreate(ReflectanceDriveTask,"Drive",200, NULL,tskIDLE_PRIORITY,&taskHndl);
+	#if PL_LOCAL_CONFIG_BOARD_IS_ROBO & PL_CONFIG_HAS_REFLECTANCE & 1
+	res= FRTOS1_xTaskCreate(DriveTask,"Drive",200, NULL,tskIDLE_PRIORITY+2,&taskHndl);
 	#endif
-	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+1,&taskHndl);
+	res= FRTOS1_xTaskCreate(MyAPPTask,"APP",200, NULL,tskIDLE_PRIORITY+2,&taskHndl);
 
 }
 
